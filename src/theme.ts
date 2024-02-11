@@ -9,13 +9,22 @@ const roboto = Roboto({
 });
 
 const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
+    },
+  },
   palette: {
     mode: 'light',
-    primary: {
-      main: '#eeefe3',
+    success: {
+      main: '#00371d',
     },
     background: {
-      default: '#eeefe3',
+      default: '#e8e8e8',
     },
   },
   typography: {

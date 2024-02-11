@@ -1,12 +1,15 @@
-import AgricultureIcon from '@mui/icons-material/Agriculture';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { Metadata } from 'next';
+import { Avatar, Box, Container, TextField } from '@mui/material';
 
-export default function Home() {
+import Button from '@/components/button';
+import Strings from './strings';
+
+export const metadata: Metadata = {
+  title: `${Strings.label_btn_sign_in} - ${Strings.title_app}`,
+  description: Strings.desc_home,
+};
+
+export default function HomePage() {
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -16,46 +19,44 @@ export default function Home() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          bgcolor: '#ffffff',
+          bgcolor: '#eeefe3',
         }}
       >
         <Avatar
-          alt="logo-company"
-          variant="rounded"
-          sx={{ m: 1, bgcolor: 'success.main' }}
-        >
-          <AgricultureIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Box component="form" sx={{ mt: 1 }}>
+          alt="DayaTani Logo"
+          src="/dayatani.png"
+          variant="square"
+          sx={{ width: '50%', height: '50%' }}
+        />
+        <Box component="form" sx={{ marginTop: 1 }}>
           <TextField
+            color="success"
             margin="normal"
-            label="Username"
-            id="username"
-            name="username"
+            label={Strings.label_txtbox_username}
+            id={Strings.id_txtbox_username}
+            name={Strings.id_txtbox_username}
             type="text"
+            autoComplete="off"
             autoFocus
             required
             fullWidth
           />
           <TextField
+            color="success"
             margin="normal"
-            label="Password"
-            id="password"
-            name="password"
+            label={Strings.label_txtbox_password}
+            id={Strings.id_txtbox_password}
+            name={Strings.id_txtbox_password}
             type="password"
             required
             fullWidth
           />
           <Button
             type="submit"
-            variant="contained"
             fullWidth
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ marginTop: 3, marginBottom: 2 }}
           >
-            Sign In
+            {Strings.label_btn_sign_in}
           </Button>
         </Box>
       </Box>

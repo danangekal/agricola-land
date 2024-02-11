@@ -1,0 +1,174 @@
+'use client';
+import {
+  Box,
+  Divider,
+  Unstable_Grid2 as Grid,
+  Paper,
+  Typography,
+} from '@mui/material';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import dayjs from 'dayjs';
+import { Controller } from 'react-hook-form';
+
+import Strings from '@/app/farmers/strings';
+import Button from '@/components/button';
+import TextField from '@/components/textfield';
+import type { IFormFarmer } from './types';
+import useHooks from './hooks';
+
+export default function FormFarmer({
+  type,
+  initialValues,
+  handleOnSubmitForm,
+}: IFormFarmer) {
+  const { control, errors, handleSubmit, labelBtnSubmit, onSubmit } = useHooks({
+    type,
+    initialValues,
+    handleOnSubmitForm,
+  });
+
+  return (
+    <Box
+      component={Paper}
+      sx={{ width: '60%', padding: 2, borderRadius: 6, bgcolor: '#FEFDF8' }}
+    >
+      <Grid container spacing={2}>
+        <Grid xs={12}>
+          <Typography>{Strings.label_col_name}</Typography>
+        </Grid>
+        <Grid xs={12}>
+          <Controller
+            name="name"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                inputRef={field.ref}
+                id={Strings.value_col_name}
+                placeholder={Strings.placeholder_name}
+                error={errors?.name ? true : false}
+                helperText={errors?.name?.message}
+                InputProps={{
+                  readOnly: type === 'detail' ? true : false,
+                  sx: {
+                    borderRadius: 2.5,
+                  },
+                }}
+                fullWidth
+                {...field}
+              />
+            )}
+          />
+        </Grid>
+        <Grid xs={12}>
+          <Typography>{Strings.label_col_id_number}</Typography>
+        </Grid>
+        <Grid xs={12}>
+          <Controller
+            name="idCardNumber"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                inputRef={field.ref}
+                id={Strings.value_col_id_number}
+                placeholder={Strings.placeholder_id_number}
+                error={errors?.idCardNumber ? true : false}
+                helperText={errors.idCardNumber?.message}
+                InputProps={{
+                  readOnly: type === 'detail' ? true : false,
+                  sx: {
+                    borderRadius: 2.5,
+                  },
+                }}
+                fullWidth
+                {...field}
+              />
+            )}
+          />
+        </Grid>
+        <Grid xs={12}>
+          <Typography>{Strings.label_col_birthdate}</Typography>
+        </Grid>
+        <Grid xs={12}>
+          {type === 'detail' ? (
+            <Controller
+              name="birthDate"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  inputRef={field.ref}
+                  id={Strings.value_col_birthdate}
+                  placeholder={Strings.placeholder_birthdate}
+                  error={errors?.birthDate ? true : false}
+                  helperText={errors?.birthDate?.message}
+                  InputProps={{
+                    readOnly: true,
+                    sx: {
+                      borderRadius: 2.5,
+                    },
+                  }}
+                  fullWidth
+                  {...field}
+                />
+              )}
+            />
+          ) : (
+            <Controller
+              name="birthDate"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  inputRef={field.ref}
+                  id={Strings.value_col_birthdate}
+                  placeholder={Strings.placeholder_birthdate}
+                  error={errors?.birthDate ? true : false}
+                  helperText={errors?.birthDate?.message}
+                  InputProps={{
+                    sx: {
+                      borderRadius: 2.5,
+                    },
+                  }}
+                  fullWidth
+                  {...field}
+                />
+              )}
+            />
+            // <Controller
+            //   render={({ field }) => (
+            //     <DatePicker
+            //       slotProps={{
+            //         textField: {
+            //           size: "small",
+            //           color: "success",
+            //           placeholder: Strings.placeholder_birthdate,
+            //           error: errors?.birthDate ? true : false,
+            //           helperText: errors.birthDate?.message,
+            //           InputProps: {
+            //             sx: {
+            //               borderRadius: 2.5,
+            //             },
+            //           },
+            //           fullWidth: true,
+            //         },
+            //       }}
+            //       {...field}
+            //     />
+            //   )}
+            //   name="birthDate"
+            //   control={control}
+            // />
+          )}
+        </Grid>
+        {type !== 'detail' ? (
+          <>
+            <Grid xs={12}>
+              <Divider sx={{ bgcolor: '#E1E3D4' }} />
+            </Grid>
+            <Grid xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button onClick={handleSubmit(onSubmit)}>{labelBtnSubmit}</Button>
+            </Grid>
+          </>
+        ) : null}
+      </Grid>
+    </Box>
+  );
+}
