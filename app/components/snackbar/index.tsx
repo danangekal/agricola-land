@@ -1,10 +1,11 @@
-import { Alert, Snackbar as MuiSnackbar } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
+import { Alert, AlertTitle, Snackbar as MuiSnackbar } from '@mui/material';
 
 import useHooks from './hooks';
 
 const Snackbar = () => {
   const { durationHideAlert, onClose, snackbar } = useHooks();
-  const { message, open, type } = snackbar;
+  const { message, open, title, type } = snackbar;
   const handleClose = () => onClose();
 
   return (
@@ -17,7 +18,12 @@ const Snackbar = () => {
       onClose={handleClose}
       open={open}
     >
-      <Alert onClose={handleClose} severity={type}>
+      <Alert
+        icon={<InfoIcon fontSize="inherit" />}
+        onClose={handleClose}
+        severity={type}
+      >
+        {title ? <AlertTitle>{title}</AlertTitle> : null}
         {message}
       </Alert>
     </MuiSnackbar>

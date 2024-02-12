@@ -38,9 +38,10 @@ const useHooks = () => {
       await setCookiesCredential(credential);
       dispatch(
         setSnackbar({
-          message: Strings.msg_success_sign_in,
           open: true,
           type: 'success',
+          title: 'Success',
+          message: Strings.msg_success_sign_in,
         }),
       );
       dispatch(setCredential(credential));
@@ -48,9 +49,10 @@ const useHooks = () => {
     } else {
       dispatch(
         setSnackbar({
-          message: Strings.msg_error_sign_in,
           open: true,
           type: 'error',
+          title: 'Error',
+          message: Strings.msg_error_sign_in,
         }),
       );
     }

@@ -12,6 +12,7 @@ const initAppState: AppState = {
   snackbar: {
     open: false,
     type: 'info',
+    title: '',
     message: '',
   },
 };

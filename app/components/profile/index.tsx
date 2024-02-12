@@ -29,16 +29,16 @@ const Profile = ({ credential }: ProfileProps) => {
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleClose = () => setAnchorEl(null);
   const handleOnClickSignOut = async () => {
     await deleteCookiesCredential();
+    handleClose();
     dispatch(
       setSnackbar({
-        message: Strings.msg_success_sign_out,
         open: true,
         type: 'success',
+        title: 'Success',
+        message: Strings.msg_success_sign_out,
       }),
     );
     dispatch(

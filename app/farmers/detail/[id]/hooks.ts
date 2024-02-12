@@ -8,9 +8,7 @@ const useHooks = () => {
     idCardNumber: '9999999',
     birthDate: '1985-09-09',
   };
-  const handleSubmit = (values: FarmerDto) => {
-    console.log(values);
-  };
+  const handleSubmit = () => {};
 
   return { handleSubmit, initialValues, type };
 };

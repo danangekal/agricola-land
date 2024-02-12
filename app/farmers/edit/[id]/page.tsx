@@ -2,8 +2,12 @@
 import FormFarmer from '@/app/components/form-farmer';
 import useHooks from './hooks';
 
-export default function EditFarmerPage({ params }: { params: { id: string } }) {
-  const { handleSubmit, initialValues, type } = useHooks();
+export default function EditFarmerPage({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  const { handleSubmit, initialValues, type } = useHooks(id);
 
   return (
     <FormFarmer

@@ -32,7 +32,27 @@ const Strings = {
   label_open_profile: 'Open Settings',
   value_open_profile: 'open',
   label_act_sign_out: 'Sign Out',
-  msg_success_sign_out: 'Success Sign Out, Thanks!',
+  msg_success_sign_out: 'Your sign out successfully, Welcome back!',
+  title_success_add: 'Farmer Added Successfully',
+  msg_success_add: 'You have successfully added a new farmer',
+  title_success_edit: 'Edit Farmer Successfully',
+  msg_success_edit: 'The farmer has been successfully editted from the system',
+  title_success_delete: 'Farmer Deleted Successfully',
+  msg_success_delete:
+    'The farmer has been successfully deleted from the system',
+  label_btn_no_modal: 'No, Decline',
+  label_btn_yes_add_modal: 'Yes, Add',
+  label_btn_yes_edit_modal: 'Yes, Edit',
+  label_btn_yes_delete_modal: 'Yes, Delete',
+  title_modal_add: 'Add Farmer',
+  msg_modal_add:
+    'Please make sure there are no mistakes and typos when filling the information.',
+  title_modal_edit: 'Edit Farmer',
+  msg_modal_edit:
+    'Please make sure there are no mistakes and typos when Editting the information.',
+  title_modal_delete: 'Delete Farmer',
+  msg_modal_delete:
+    'Are you sure you want to delete #name ? This action cannot be undone',
 };
 
 export default Strings;

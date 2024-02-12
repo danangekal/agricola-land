@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: Strings.desc_edit,
 };
 
-export default async function AddFarmerLayout({
+export default async function EditFarmerLayout({
   children,
 }: {
   children: ReactNode;

@@ -1,19 +1,21 @@
+import { Fragment } from 'react';
 import { Metadata } from 'next';
 import {
   Box,
-  Typography,
-  Unstable_Grid2 as Grid,
   Table,
   TableRow,
   TableCell,
   TableBody,
+  Typography,
+  Unstable_Grid2 as Grid,
 } from '@mui/material';
 
-import { getCookiesCredential } from '@/app/action';
+import { getCookiesCredential, getFarmerList } from '@/app/action';
 import ActionFarmer from '@/app/components/action-farmer';
 import ButtonAdd from '@/app/components/button-add';
 import Profile from '@/app/components/profile';
 import Strings from './strings';
+import { Farmer } from './types';
 
 export const metadata: Metadata = {
   title: `${Strings.title_list} - ${Strings.title_app}`,
@@ -22,6 +24,7 @@ export const metadata: Metadata = {
 
 export default async function FarmerListPage() {
   const credential = await getCookiesCredential();
+  const { farmers } = await getFarmerList(1);
 
   return (
     <Grid container spacing={2} sx={{ padding: 2 }}>
@@ -30,7 +33,7 @@ export default async function FarmerListPage() {
       </Grid>
       <Grid xs={12}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography component="h5" variant="subtitle1">
+          <Typography component="h5" variant="h6">
             {Strings.title_list}
           </Typography>
           <ButtonAdd>{Strings.label_btn_add}</ButtonAdd>
@@ -48,24 +51,24 @@ export default async function FarmerListPage() {
             </TableRow>
           </TableBody>
           <TableBody sx={{ bgcolor: '#ffffff' }}>
-            <TableRow>
-              <TableCell>1</TableCell>
-              <TableCell>Tes</TableCell>
-              <TableCell>123456</TableCell>
-              <TableCell>1985-03-03</TableCell>
-              <TableCell>
-                <ActionFarmer id={Number(1)} />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>2</TableCell>
-              <TableCell>Tes 2</TableCell>
-              <TableCell>123456</TableCell>
-              <TableCell>1985-03-03</TableCell>
-              <TableCell>
-                <ActionFarmer id={Number(2)} />
-              </TableCell>
-            </TableRow>
+            {farmers.map(
+              (
+                { id, name, birthDate, idCardNumber }: Farmer,
+                index: string,
+              ) => (
+                <Fragment key={index}>
+                  <TableRow>
+                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>{name}</TableCell>
+                    <TableCell>{idCardNumber}</TableCell>
+                    <TableCell>{birthDate}</TableCell>
+                    <TableCell>
+                      <ActionFarmer id={id} />
+                    </TableCell>
+                  </TableRow>
+                </Fragment>
+              ),
+            )}
           </TableBody>
         </Table>
       </Grid>

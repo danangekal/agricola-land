@@ -9,8 +9,8 @@ const Strings = {
   id_txtbox_password: 'password',
   placeholder_password: 'Enter Password',
   msg_required: 'Please fill in this field.',
-  msg_success_sign_in: 'Success Sign in, Welcome to Dashboard!',
-  msg_error_sign_in: 'Sorry your credential account not valid!',
+  msg_success_sign_in: 'Your credential account valid, Welcome to Dashboard!',
+  msg_error_sign_in: 'Your credential account not valid!',
   key_credential_persist: 'credential',
 };
 

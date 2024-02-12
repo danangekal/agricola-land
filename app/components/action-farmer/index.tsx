@@ -14,21 +14,35 @@ import {
   MenuItem,
 } from '@mui/material';
 
+import { deleteFarmer } from '@/app/action';
 import Strings from '@/app/farmers/strings';
+import { useAppContext } from '@/app/state/context';
+import { setSnackbar } from '@/app/state/reducer';
 import { ActionFarmerProps, ActionMenu } from './types';
 
 const ActionFarmer = ({ id }: ActionFarmerProps) => {
   const { push } = useRouter();
-  const handleClickDetail = () => push(`/farmers/detail/${id}`);
-  const handleClickEdit = () => push(`/farmers/edit/${id}`);
-  const handleClickDelete = () => alert('Are you sure?');
+  const { dispatch } = useAppContext();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = () => setAnchorEl(null);
+  const handleClickDetail = () => push(`/farmers/detail/${id}`);
+  const handleClickEdit = () => push(`/farmers/edit/${id}`);
+  const handleClickDelete = async () => {
+    await deleteFarmer(id);
+    handleClose();
+    dispatch(
+      setSnackbar({
+        open: true,
+        type: 'success',
+        title: Strings.title_success_edit,
+        message: Strings.msg_success_edit,
+      }),
+    );
+    push('/farmers');
   };
   const options: ActionMenu[] = [
     {
