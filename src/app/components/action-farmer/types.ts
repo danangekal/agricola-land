@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 
-import { IFarmer } from '@/app/farmers/types';
+import { Farmer } from '@/app/farmers/types';
 
-export type IActionFarmer = Pick<IFarmer, 'id'>;
+export type ActionFarmerProps = Pick<Farmer, 'id'>;
 
-export interface IActionMenu {
+export interface ActionMenu {
   /**
    * The label of menu
    */

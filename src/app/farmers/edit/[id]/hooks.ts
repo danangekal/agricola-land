@@ -1,14 +1,14 @@
-import type { IFarmerDto } from '@/app/farmers/types';
-import { TFormFarmer } from '@/components/form-farmer/types';
+import { FarmerDto } from '@/app/farmers/types';
+import { FormFarmer } from '@/app/components/form-farmer/types';
 
 const useHooks = () => {
-  const type: TFormFarmer = 'edit';
-  const initialValues: IFarmerDto = {
+  const type: FormFarmer = 'edit';
+  const initialValues: FarmerDto = {
     name: 'Tes',
     idCardNumber: '9999999',
     birthDate: '1985-09-09',
   };
-  const handleSubmit = (values: IFarmerDto) => {
+  const handleSubmit = (values: FarmerDto) => {
     console.log(values);
   };
 

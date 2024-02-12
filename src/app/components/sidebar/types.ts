@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-export interface IMenu {
+export interface Menu {
   /**
    * The name of menu
    */

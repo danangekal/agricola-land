@@ -6,8 +6,10 @@ import {
   Unstable_Grid2 as Grid,
   useMediaQuery,
 } from '@mui/material';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
-import Sidebar from '@/components/sidebar';
+import Sidebar from '@/app/components/sidebar';
 
 function DestopLayout({ children }: { children: ReactNode }) {
   return (
@@ -29,6 +31,7 @@ function DestopLayout({ children }: { children: ReactNode }) {
     </Grid>
   );
 }
+
 function MobileLayout({ children }: { children: ReactNode }) {
   return (
     <Container>
@@ -41,7 +44,16 @@ function MobileLayout({ children }: { children: ReactNode }) {
 export default function FarmersLayout({ children }: { children: ReactNode }) {
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  if (isMobile) return <MobileLayout>{children}</MobileLayout>;
+  if (isMobile)
+    return (
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <MobileLayout>{children}</MobileLayout>;
+      </LocalizationProvider>
+    );
 
-  return <DestopLayout>{children}</DestopLayout>;
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DestopLayout>{children}</DestopLayout>
+    </LocalizationProvider>
+  );
 }

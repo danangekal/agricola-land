@@ -7,12 +7,12 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Menu,
 } from '@mui/material';
 
-import ActionFarmer from '@/components/action-farmer';
-import ButtonAdd from '@/components/button-add';
-import Profile from '@/components/profile';
+import { getCookiesCredential } from '@/app/action';
+import ActionFarmer from '@/app/components/action-farmer';
+import ButtonAdd from '@/app/components/button-add';
+import Profile from '@/app/components/profile';
 import Strings from './strings';
 
 export const metadata: Metadata = {
@@ -20,11 +20,13 @@ export const metadata: Metadata = {
   description: Strings.desc_list,
 };
 
-export default function FarmerListPage() {
+export default async function FarmerListPage() {
+  const credential = await getCookiesCredential();
+
   return (
     <Grid container spacing={2} sx={{ padding: 2 }}>
       <Grid xs={12}>
-        <Profile />
+        <Profile credential={credential} />
       </Grid>
       <Grid xs={12}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

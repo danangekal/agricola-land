@@ -1,12 +1,17 @@
-'use client';
 import { ReactNode } from 'react';
+import { Metadata } from 'next';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
-import theme from '@/theme';
+import theme from '@/app/lib/theme';
+import Strings from './strings';
+import { AppProvider } from './state/context';
+
+export const metadata: Metadata = {
+  title: `${Strings.label_btn_sign_in} - ${Strings.title_app}`,
+  description: Strings.desc_home,
+};
 
 export default function RootLayout({
   children,
@@ -16,15 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <AppProvider>
+          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+            <ThemeProvider theme={theme}>
+              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+              <CssBaseline />
               {children}
-            </LocalizationProvider>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </AppProvider>
       </body>
     </html>
   );

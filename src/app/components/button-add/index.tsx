@@ -1,12 +1,14 @@
 'use client';
-import { ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 
-import Button from '@/components/button';
+import Button from '@/app/components/button';
+import { ButtonAddProps } from './types';
 
-export default function ButtonAdd({ children }: { children: ReactNode }) {
+const ButtonAdd = ({ children }: ButtonAddProps) => {
   const { push } = useRouter();
   const handleClickAdd = () => push('/farmers/add');
 
   return <Button onClick={handleClickAdd}>{children}</Button>;
-}
+};
+
+export default ButtonAdd;

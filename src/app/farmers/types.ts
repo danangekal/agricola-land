@@ -1,4 +1,4 @@
-export interface IFarmerDto {
+export interface FarmerDto {
   /**
    * the name of the farmer
    */
@@ -15,7 +15,7 @@ export interface IFarmerDto {
   birthDate: string;
 }
 
-export interface IFarmer extends IFarmerDto {
+export interface Farmer extends FarmerDto {
   /**
    * The unique identifier for the farmer
    */

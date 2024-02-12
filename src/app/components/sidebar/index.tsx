@@ -6,12 +6,13 @@ import {
   ListItemText,
   MenuItem,
   MenuList,
+  Typography,
 } from '@mui/material';
 
 import { DummyMenu } from './menu';
-import type { IMenu } from './types';
+import { Menu } from './types';
 
-export default function Sidebar() {
+const Sidebar = () => {
   return (
     <Box
       sx={{
@@ -36,15 +37,25 @@ export default function Sidebar() {
         />
       </Box>
       <MenuList>
-        {DummyMenu.map(({ name, icon, pathname }: IMenu, index) => (
+        {DummyMenu.map(({ name, icon, pathname }: Menu, index) => (
           <Box key={`${index}-${name}`}>
             <MenuItem>
               <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText sx={{ fontSize: '14px' }}>{name}</ListItemText>
+              <ListItemText>
+                <Typography
+                  component="h6"
+                  variant="caption"
+                  sx={{ color: '#4D4F47' }}
+                >
+                  {name}
+                </Typography>
+              </ListItemText>
             </MenuItem>
           </Box>
         ))}
       </MenuList>
     </Box>
   );
-}
+};
+
+export default Sidebar;

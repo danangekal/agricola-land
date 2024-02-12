@@ -1,4 +1,4 @@
-const strings = {
+const Strings = {
   title_app: 'Agricola Land',
   title_list: 'Farmer List',
   desc_list: 'List of farmer',
@@ -29,6 +29,10 @@ const strings = {
   label_act_edit: 'Edit',
   label_act_delete: 'Delete',
   label_btn_edit: 'Save Edit',
+  label_open_profile: 'Open Settings',
+  value_open_profile: 'open',
+  label_act_sign_out: 'Sign Out',
+  msg_success_sign_out: 'Success Sign Out, Thanks!',
 };
 
-export default strings;
+export default Strings;

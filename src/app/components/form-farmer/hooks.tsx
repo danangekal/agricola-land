@@ -1,24 +1,28 @@
 import { useForm } from 'react-hook-form';
-import type { SubmitHandler } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Strings from '@/app/farmers/strings';
-import type { IFarmerDto } from '@/app/farmers/types';
-import type { IFormFarmer } from './types';
+import { FarmerDto } from '@/app/farmers/types';
+import { FormFarmerProps } from './types';
 import validationSchema from './validation-schema';
 
-const useHooks = ({ type, initialValues, handleOnSubmitForm }: IFormFarmer) => {
+const useHooks = ({
+  type,
+  initialValues,
+  handleOnSubmitForm,
+}: FormFarmerProps) => {
   const labelBtnSubmit =
     type === 'add' ? Strings.label_btn_add : Strings.label_btn_edit;
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<IFarmerDto>({
+  } = useForm<FarmerDto>({
     defaultValues: initialValues,
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit: SubmitHandler<IFarmerDto> = (values) =>
+  const onSubmit: SubmitHandler<FarmerDto> = (values) =>
     handleOnSubmitForm(values);
 
   return {

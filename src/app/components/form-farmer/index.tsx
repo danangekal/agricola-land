@@ -4,6 +4,7 @@ import {
   Divider,
   Unstable_Grid2 as Grid,
   Paper,
+  // TextField,
   Typography,
 } from '@mui/material';
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -11,16 +12,16 @@ import {
 import { Controller } from 'react-hook-form';
 
 import Strings from '@/app/farmers/strings';
-import Button from '@/components/button';
-import TextField from '@/components/textfield';
-import type { IFormFarmer } from './types';
+import Button from '@/app/components/button';
+import TextField from '@/app/components/textfield';
 import useHooks from './hooks';
+import { FormFarmerProps } from './types';
 
-export default function FormFarmer({
+const FormFarmer = ({
   type,
   initialValues,
   handleOnSubmitForm,
-}: IFormFarmer) {
+}: FormFarmerProps) => {
   const { control, errors, handleSubmit, labelBtnSubmit, onSubmit } = useHooks({
     type,
     initialValues,
@@ -42,7 +43,6 @@ export default function FormFarmer({
             control={control}
             render={({ field }) => (
               <TextField
-                inputRef={field.ref}
                 id={Strings.value_col_name}
                 placeholder={Strings.placeholder_name}
                 error={errors?.name ? true : false}
@@ -68,7 +68,6 @@ export default function FormFarmer({
             control={control}
             render={({ field }) => (
               <TextField
-                inputRef={field.ref}
                 id={Strings.value_col_id_number}
                 placeholder={Strings.placeholder_id_number}
                 error={errors?.idCardNumber ? true : false}
@@ -95,7 +94,6 @@ export default function FormFarmer({
               control={control}
               render={({ field }) => (
                 <TextField
-                  inputRef={field.ref}
                   id={Strings.value_col_birthdate}
                   placeholder={Strings.placeholder_birthdate}
                   error={errors?.birthDate ? true : false}
@@ -117,11 +115,10 @@ export default function FormFarmer({
               control={control}
               render={({ field }) => (
                 <TextField
-                  inputRef={field.ref}
                   id={Strings.value_col_birthdate}
                   placeholder={Strings.placeholder_birthdate}
                   error={errors?.birthDate ? true : false}
-                  helperText={errors?.birthDate?.message}
+                  helperText={errors?.birthDate?.message || ''}
                   InputProps={{
                     sx: {
                       borderRadius: 2.5,
@@ -171,4 +168,6 @@ export default function FormFarmer({
       </Grid>
     </Box>
   );
-}
+};
+
+export default FormFarmer;

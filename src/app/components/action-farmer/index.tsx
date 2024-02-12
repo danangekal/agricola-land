@@ -15,9 +15,9 @@ import {
 } from '@mui/material';
 
 import Strings from '@/app/farmers/strings';
-import { IActionFarmer, IActionMenu } from './types';
+import { ActionFarmerProps, ActionMenu } from './types';
 
-export default function ActionFarmer({ id }: IActionFarmer) {
+const ActionFarmer = ({ id }: ActionFarmerProps) => {
   const { push } = useRouter();
   const handleClickDetail = () => push(`/farmers/detail/${id}`);
   const handleClickEdit = () => push(`/farmers/edit/${id}`);
@@ -30,7 +30,7 @@ export default function ActionFarmer({ id }: IActionFarmer) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const options: IActionMenu[] = [
+  const options: ActionMenu[] = [
     {
       label: 'View',
       icon: <VisibilityIcon />,
@@ -53,7 +53,7 @@ export default function ActionFarmer({ id }: IActionFarmer) {
       <IconButton
         aria-label={Strings.label_col_action}
         id={`btn${Strings.value_col_action}`}
-        aria-controls={open ? 'btn-action' : undefined}
+        aria-controls={open ? `btn-${Strings.value_col_action}` : undefined}
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
@@ -63,7 +63,7 @@ export default function ActionFarmer({ id }: IActionFarmer) {
       <Menu
         id={`menu${Strings.value_col_action}`}
         MenuListProps={{
-          'aria-labelledby': 'menu-action',
+          'aria-labelledby': `menu-${Strings.value_col_action}`,
         }}
         anchorEl={anchorEl}
         open={open}
@@ -71,7 +71,7 @@ export default function ActionFarmer({ id }: IActionFarmer) {
       >
         {options.map(({ handleOnClick, icon, label }, index) => (
           <div key={`${index}-${label}`}>
-            <MenuItem onClick={handleOnClick} sx={{ margin: 0.5 }}>
+            <MenuItem onClick={handleOnClick}>
               <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText>{label}</ListItemText>
             </MenuItem>
@@ -83,4 +83,6 @@ export default function ActionFarmer({ id }: IActionFarmer) {
       </Menu>
     </>
   );
-}
+};
+
+export default ActionFarmer;

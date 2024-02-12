@@ -6,9 +6,9 @@ import {
   VideogameAsset,
 } from '@mui/icons-material';
 
-import type { IMenu } from './types';
+import { Menu } from './types';
 
-export const DummyMenu: IMenu[] = [
+export const DummyMenu: Menu[] = [
   {
     name: 'Farmers',
     icon: <Person />,
