@@ -13,6 +13,7 @@ import { Controller } from 'react-hook-form';
 
 import Strings from '@/app/farmers/strings';
 import Button from '@/app/components/button';
+import Dialog from '@/app/components/dialog';
 import TextField from '@/app/components/textfield';
 import useHooks from './hooks';
 import { FormFarmerProps } from './types';
@@ -24,7 +25,18 @@ const FormFarmer = ({
   loading = false,
   handleOnSubmitForm,
 }: FormFarmerProps) => {
-  const { control, errors, handleSubmit, labelBtnSubmit, onSubmit } = useHooks({
+  const {
+    control,
+    errors,
+    handleSubmit,
+    labelBtnSubmit,
+    onSubmit,
+    isDialog,
+    titleDialog,
+    contentDialog,
+    onHandleCloseDialog,
+    onHandleShowDialog,
+  } = useHooks({
     type,
     initialValues,
     values,
@@ -84,7 +96,7 @@ const FormFarmer = ({
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    // id={Strings.value_col_name}
+                    id={Strings.value_col_name}
                     placeholder={Strings.placeholder_name}
                     error={errors?.name ? true : false}
                     helperText={errors?.name?.message}
@@ -109,7 +121,7 @@ const FormFarmer = ({
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    // id={Strings.value_col_id_number}
+                    id={Strings.value_col_id_number}
                     placeholder={Strings.placeholder_id_number}
                     error={errors?.idCardNumber ? true : false}
                     helperText={errors.idCardNumber?.message}
@@ -135,7 +147,7 @@ const FormFarmer = ({
                   control={control}
                   render={({ field }) => (
                     <TextField
-                      // id={Strings.value_col_birthdate}
+                      id={Strings.value_col_birthdate}
                       placeholder={Strings.placeholder_birthdate}
                       error={errors?.birthDate ? true : false}
                       helperText={errors?.birthDate?.message}
@@ -205,8 +217,8 @@ const FormFarmer = ({
                   xs={12}
                   sx={{ display: 'flex', justifyContent: 'flex-end' }}
                 >
-                  <Button onClick={handleSubmit(onSubmit)}>
-                    {labelBtnSubmit}
+                  <Button onClick={onHandleShowDialog}>
+                    {labelBtnSubmit[type]}
                   </Button>
                 </Grid>
               </>
@@ -214,6 +226,14 @@ const FormFarmer = ({
           </Grid>
         </>
       )}
+      <Dialog
+        open={isDialog}
+        type={type}
+        title={titleDialog[type]}
+        content={contentDialog[type]}
+        handleOnCancel={onHandleCloseDialog}
+        handleOnSubmit={handleSubmit(onSubmit)}
+      />
     </Box>
   );
 };

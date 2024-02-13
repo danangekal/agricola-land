@@ -64,7 +64,7 @@ export default async function FarmerListPage() {
                     <TableCell>{idCardNumber}</TableCell>
                     <TableCell>{birthDate}</TableCell>
                     <TableCell>
-                      <ActionFarmer id={id} />
+                      <ActionFarmer id={id} name={name} />
                     </TableCell>
                   </TableRow>
                 </Fragment>

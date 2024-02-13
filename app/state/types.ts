@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode } from 'react';
 
 import { SnackbarProps } from '@/app/components/snackbar/types';
+import { DialogProps } from '@/app/components/dialog/types';
 import { Credential } from '@/app/types';
 import { AppAction } from './action';
 

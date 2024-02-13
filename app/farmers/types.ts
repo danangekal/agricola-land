@@ -21,3 +21,5 @@ export interface Farmer extends FarmerDto {
    */
   id: number;
 }
+
+export type TypeActionFarmer = 'add' | 'edit' | 'detail' | 'delete';

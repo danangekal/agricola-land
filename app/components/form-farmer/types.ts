@@ -1,12 +1,10 @@
-import { Farmer, FarmerDto } from '@/app/farmers/types';
-
-export type FormFarmer = 'add' | 'edit' | 'detail';
+import { Farmer, FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 
 export interface FormFarmerProps {
   /**
    * The type of form farmer
    */
-  type: FormFarmer;
+  type: TypeActionFarmer;
   /**
    * The initial values of form
    */

@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import { Farmer } from '@/app/farmers/types';
 
-export type ActionFarmerProps = Pick<Farmer, 'id'>;
+export type ActionFarmerProps = Pick<Farmer, 'id' | 'name'>;
 
 export interface ActionMenu {
   /**

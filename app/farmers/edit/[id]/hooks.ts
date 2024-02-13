@@ -2,10 +2,9 @@ import { useRouter } from 'next/navigation';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import useSWR from 'swr';
 
-import { FormFarmer } from '@/app/components/form-farmer/types';
 import { updateFarmer } from '@/app/farmers/action';
 import Strings from '@/app/farmers/strings';
-import { Farmer, FarmerDto } from '@/app/farmers/types';
+import { Farmer, FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 import { useAppContext } from '@/app/state/context';
 import { setSnackbar } from '@/app/state/reducer';
 
@@ -16,7 +15,7 @@ const useHooks = (id: string) => {
     `/api/farmers/${id}`,
     axios,
   );
-  const type: FormFarmer = 'edit';
+  const type: TypeActionFarmer = 'edit';
   const values = data?.data ?? null;
   const initialValues: Farmer = {
     id: 0,

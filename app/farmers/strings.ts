@@ -40,6 +40,8 @@ const Strings = {
   title_success_delete: 'Farmer Deleted Successfully',
   msg_success_delete:
     'The farmer has been successfully deleted from the system',
+  id_button_no_dialog: 'button-modal-farmer',
+  id_button_yes_dialog: 'button-modal-farmer',
   label_btn_no_modal: 'No, Decline',
   label_btn_yes_add_modal: 'Yes, Add',
   label_btn_yes_edit_modal: 'Yes, Edit',

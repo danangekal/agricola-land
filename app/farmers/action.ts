@@ -2,7 +2,7 @@
 'use server';
 import { revalidatePath } from 'next/cache';
 
-import { Farmer, FarmerDto } from './types';
+import { Farmer } from './types';
 
 const baseUrl = process.env.API_URL;
 const username = process.env.NEXT_PUBLIC_USERNAME;
@@ -13,9 +13,8 @@ const headers = {
   'Content-type': 'application/json',
 };
 
-export async function createFarmer(values: FarmerDto) {
+export async function createFarmer(values: Farmer) {
   try {
-    // fetch to API
     const res = await fetch(urlFarmer, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -23,7 +22,6 @@ export async function createFarmer(values: FarmerDto) {
     });
 
     if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
       throw new Error('Failed to fetch data');
     }
   } catch (e) {
@@ -33,9 +31,8 @@ export async function createFarmer(values: FarmerDto) {
   revalidatePath('/farmers');
 }
 
-export async function updateFarmer(id: string, values: FarmerDto) {
+export async function updateFarmer(id: string, values: Farmer) {
   try {
-    // fetch to API
     const res = await fetch(`${urlFarmer}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(values),
@@ -43,7 +40,6 @@ export async function updateFarmer(id: string, values: FarmerDto) {
     });
 
     if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
       throw new Error('Failed to fetch data');
     }
   } catch (e) {
@@ -55,14 +51,12 @@ export async function updateFarmer(id: string, values: FarmerDto) {
 
 export async function deleteFarmer(id: number) {
   try {
-    // get to API
     const res = await fetch(`${urlFarmer}/${id}`, {
       method: 'DELETE',
       headers,
     });
 
     if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
       throw new Error('Failed to fetch data');
     }
   } catch (e) {
@@ -75,11 +69,11 @@ export async function deleteFarmer(id: number) {
 export async function getFarmer(id: number) {
   const fetchData = async () => {
     try {
-      // fetch to API
-      const res = await fetch(`${urlFarmer}/${id}`);
+      const res = await fetch(`${urlFarmer}/${id}`, {
+        next: { revalidate: 0 },
+      });
 
       if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
       }
 
@@ -90,6 +84,7 @@ export async function getFarmer(id: number) {
   };
 
   const data: Farmer = await fetchData();
+
   if (data?.id) {
     return data;
   } else {
@@ -100,14 +95,14 @@ export async function getFarmer(id: number) {
 export async function getFarmerList(page: number) {
   const fetchData = async (page: number) => {
     try {
-      // fetch to API
       const limit = 10;
       const offset = page * limit - limit;
       const params = `offset=${offset}&limit=${limit}`;
-      const res = await fetch(`${urlFarmer}?${params}`);
+      const res = await fetch(`${urlFarmer}?${params}`, {
+        next: { revalidate: 0 },
+      });
 
       if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
       }
 
@@ -118,6 +113,7 @@ export async function getFarmerList(page: number) {
   };
 
   const { farmers } = await fetchData(page);
+
   if (farmers?.length > 0) {
     return farmers;
   } else {

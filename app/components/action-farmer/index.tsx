@@ -14,21 +14,31 @@ import {
   MenuItem,
 } from '@mui/material';
 
+import Dialog from '@/app/components/dialog';
 import { deleteFarmer } from '@/app/farmers/action';
 import Strings from '@/app/farmers/strings';
 import { useAppContext } from '@/app/state/context';
 import { setSnackbar } from '@/app/state/reducer';
 import { ActionFarmerProps, ActionMenu } from './types';
 
-const ActionFarmer = ({ id }: ActionFarmerProps) => {
+const ActionFarmer = ({ id, name }: ActionFarmerProps) => {
   const { push } = useRouter();
   const { dispatch } = useAppContext();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isDialog, setIsDialog] = useState(false);
+  const type = 'delete';
+  const titleDialog = Strings.title_modal_delete;
+  const contentDialog = Strings.msg_modal_delete.replace('#name', name);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => setAnchorEl(null);
+  const onHandleShowDialog = () => {
+    handleClose();
+    setIsDialog(true);
+  };
+  const onHandleCloseDialog = () => setIsDialog(false);
   const handleClickDetail = () => push(`/farmers/detail/${id}`);
   const handleClickEdit = () => push(`/farmers/edit/${id}`);
   const handleClickDelete = async () => {
@@ -38,8 +48,8 @@ const ActionFarmer = ({ id }: ActionFarmerProps) => {
       setSnackbar({
         open: true,
         type: 'success',
-        title: Strings.title_success_edit,
-        message: Strings.msg_success_edit,
+        title: Strings.title_success_delete,
+        message: Strings.msg_success_delete,
       }),
     );
     push('/farmers');
@@ -58,7 +68,7 @@ const ActionFarmer = ({ id }: ActionFarmerProps) => {
     {
       label: 'Delete',
       icon: <DeleteForeverOutlinedIcon color="error" />,
-      handleOnClick: handleClickDelete,
+      handleOnClick: onHandleShowDialog,
     },
   ];
 
@@ -95,6 +105,14 @@ const ActionFarmer = ({ id }: ActionFarmerProps) => {
           </div>
         ))}
       </Menu>
+      <Dialog
+        open={isDialog}
+        type={type}
+        title={titleDialog}
+        content={contentDialog}
+        handleOnCancel={onHandleCloseDialog}
+        handleOnSubmit={handleClickDelete}
+      />
     </>
   );
 };

@@ -6,15 +6,26 @@ import Strings from '@/app/farmers/strings';
 import { FarmerDto } from '@/app/farmers/types';
 import { FormFarmerProps } from './types';
 import validationSchema from './validation-schema';
+import { useState } from 'react';
 
 const useHooks = ({
-  type,
   initialValues,
   values,
   handleOnSubmitForm,
 }: FormFarmerProps) => {
-  const labelBtnSubmit =
-    type === 'add' ? Strings.label_btn_add : Strings.label_btn_edit;
+  const [isDialog, setIsDialog] = useState(false);
+  const labelBtnSubmit: any = {
+    add: Strings.title_modal_add,
+    edit: Strings.label_btn_edit,
+  };
+  const titleDialog: any = {
+    add: Strings.title_modal_add,
+    edit: Strings.title_modal_edit,
+  };
+  const contentDialog: any = {
+    add: Strings.msg_modal_add,
+    edit: Strings.msg_modal_edit,
+  };
   const {
     control,
     formState: { errors },
@@ -28,6 +39,8 @@ const useHooks = ({
   });
   const onSubmit: SubmitHandler<FarmerDto> = (values) =>
     handleOnSubmitForm(values);
+  const onHandleShowDialog = () => setIsDialog(true);
+  const onHandleCloseDialog = () => setIsDialog(false);
 
   return {
     control,
@@ -35,6 +48,11 @@ const useHooks = ({
     handleSubmit,
     labelBtnSubmit,
     onSubmit,
+    isDialog,
+    titleDialog,
+    contentDialog,
+    onHandleCloseDialog,
+    onHandleShowDialog,
   };
 };
 
