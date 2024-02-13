@@ -7,12 +7,14 @@ export default function EditFarmerPage({
 }: {
   params: { id: string };
 }) {
-  const { handleSubmit, initialValues, type } = useHooks(id);
+  const { type, initialValues, isLoading, values, handleSubmit } = useHooks(id);
 
   return (
     <FormFarmer
       type={type}
+      loading={isLoading}
       initialValues={initialValues}
+      values={values}
       handleOnSubmitForm={handleSubmit}
     />
   );

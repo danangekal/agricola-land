@@ -11,6 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import Sidebar from '@/app/components/sidebar';
 import Snackbar from '@/app/components/snackbar';
+import { FarmerProvider } from './state/context';
 
 function DestopLayout({ children }: { children: ReactNode }) {
   return (
@@ -47,21 +48,24 @@ export default function FarmersLayout({ children }: { children: ReactNode }) {
 
   if (isMobile)
     return (
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <MobileLayout>
-          {children}
-          <Snackbar />
-        </MobileLayout>
-        ;
-      </LocalizationProvider>
+      <FarmerProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <MobileLayout>
+            {children}
+            <Snackbar />
+          </MobileLayout>
+        </LocalizationProvider>
+      </FarmerProvider>
     );
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DestopLayout>
-        {children}
-        <Snackbar />
-      </DestopLayout>
-    </LocalizationProvider>
+    <FarmerProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DestopLayout>
+          {children}
+          <Snackbar />
+        </DestopLayout>
+      </LocalizationProvider>
+    </FarmerProvider>
   );
 }

@@ -10,10 +10,11 @@ import {
   Unstable_Grid2 as Grid,
 } from '@mui/material';
 
-import { getCookiesCredential, getFarmerList } from '@/app/action';
+import { getCookiesCredential } from '@/app/action';
 import ActionFarmer from '@/app/components/action-farmer';
 import ButtonAdd from '@/app/components/button-add';
 import Profile from '@/app/components/profile';
+import { getFarmerList } from '@/app/farmers/action';
 import Strings from './strings';
 import { Farmer } from './types';
 
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 
 export default async function FarmerListPage() {
   const credential = await getCookiesCredential();
-  const { farmers } = await getFarmerList(1);
+  const data = await getFarmerList(1);
 
   return (
     <Grid container spacing={2} sx={{ padding: 2 }}>
@@ -51,10 +52,10 @@ export default async function FarmerListPage() {
             </TableRow>
           </TableBody>
           <TableBody sx={{ bgcolor: '#ffffff' }}>
-            {farmers.map(
+            {data?.map(
               (
                 { id, name, birthDate, idCardNumber }: Farmer,
-                index: string,
+                index: number,
               ) => (
                 <Fragment key={index}>
                   <TableRow>

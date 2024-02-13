@@ -14,7 +14,7 @@ import {
   MenuItem,
 } from '@mui/material';
 
-import { deleteFarmer } from '@/app/action';
+import { deleteFarmer } from '@/app/farmers/action';
 import Strings from '@/app/farmers/strings';
 import { useAppContext } from '@/app/state/context';
 import { setSnackbar } from '@/app/state/reducer';

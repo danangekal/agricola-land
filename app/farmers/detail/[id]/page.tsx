@@ -2,13 +2,19 @@
 import FormFarmer from '@/app/components/form-farmer';
 import useHooks from './hooks';
 
-export default function DetailFarmerPage(props: any) {
-  const { handleSubmit, initialValues, type } = useHooks();
+export default function DetailFarmerPage({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  const { type, initialValues, isLoading, values, handleSubmit } = useHooks(id);
 
   return (
     <FormFarmer
       type={type}
-      initialValues={props?.farmer}
+      loading={isLoading}
+      initialValues={initialValues}
+      values={values}
       handleOnSubmitForm={handleSubmit}
     />
   );

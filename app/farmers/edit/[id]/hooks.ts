@@ -1,20 +1,28 @@
 import { useRouter } from 'next/navigation';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import useSWR from 'swr';
 
-import { updateFarmer } from '@/app/action';
 import { FormFarmer } from '@/app/components/form-farmer/types';
+import { updateFarmer } from '@/app/farmers/action';
 import Strings from '@/app/farmers/strings';
-import { FarmerDto } from '@/app/farmers/types';
+import { Farmer, FarmerDto } from '@/app/farmers/types';
 import { useAppContext } from '@/app/state/context';
 import { setSnackbar } from '@/app/state/reducer';
 
 const useHooks = (id: string) => {
   const { push } = useRouter();
-  const type: FormFarmer = 'edit';
   const { dispatch } = useAppContext();
-  const initialValues: FarmerDto = {
-    name: 'Tes',
-    idCardNumber: '9999999',
-    birthDate: '1985-09-09',
+  const { data, isLoading } = useSWR<AxiosResponse, AxiosError>(
+    `/api/farmers/${id}`,
+    axios,
+  );
+  const type: FormFarmer = 'edit';
+  const values = data?.data ?? null;
+  const initialValues: Farmer = {
+    id: 0,
+    name: '',
+    idCardNumber: '',
+    birthDate: '',
   };
   const handleSubmit = async (values: FarmerDto) => {
     await updateFarmer(id, values);
@@ -29,7 +37,7 @@ const useHooks = (id: string) => {
     push('/farmers');
   };
 
-  return { handleSubmit, initialValues, type };
+  return { type, initialValues, isLoading, values, handleSubmit };
 };
 
 export default useHooks;

@@ -10,6 +10,7 @@ import validationSchema from './validation-schema';
 const useHooks = ({
   type,
   initialValues,
+  values,
   handleOnSubmitForm,
 }: FormFarmerProps) => {
   const labelBtnSubmit =
@@ -20,7 +21,10 @@ const useHooks = ({
     handleSubmit,
   } = useForm<FarmerDto>({
     defaultValues: initialValues,
+    values,
     resolver: yupResolver(validationSchema),
+    mode: 'onChange',
+    reValidateMode: 'onSubmit',
   });
   const onSubmit: SubmitHandler<FarmerDto> = (values) =>
     handleOnSubmitForm(values);
