@@ -4,7 +4,7 @@ import useSWR from 'swr';
 
 import { updateFarmer } from '@/app/farmers/action';
 import Strings from '@/app/farmers/strings';
-import { Farmer, FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
+import { FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 import { useAppContext } from '@/app/state/context';
 import { setSnackbar } from '@/app/state/reducer';
 
@@ -17,8 +17,7 @@ const useHooks = (id: string) => {
   );
   const type: TypeActionFarmer = 'edit';
   const values = data?.data ?? null;
-  const initialValues: Farmer = {
-    id: 0,
+  const initialValues: FarmerDto = {
     name: '',
     idCardNumber: '',
     birthDate: '',

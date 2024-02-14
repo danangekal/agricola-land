@@ -1,4 +1,4 @@
-import { Farmer, FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
+import { FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 
 export interface FormFarmerProps {
   /**
@@ -8,11 +8,11 @@ export interface FormFarmerProps {
   /**
    * The initial values of form
    */
-  initialValues?: Farmer;
+  initialValues?: FarmerDto;
   /**
    * The values of form
    */
-  values?: Farmer;
+  values?: FarmerDto;
   /**
    * The loading values of form
    */

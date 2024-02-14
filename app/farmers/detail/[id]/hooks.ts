@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import useSWR from 'swr';
 
-import { Farmer, TypeActionFarmer } from '@/app/farmers/types';
+import { Farmer, FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 
 const useHooks = (id: string) => {
   const { data, isLoading } = useSWR<AxiosResponse, AxiosError>(
@@ -10,8 +10,7 @@ const useHooks = (id: string) => {
   );
   const type: TypeActionFarmer = 'detail';
   const values = data?.data ?? null;
-  const initialValues: Farmer = {
-    id: 0,
+  const initialValues: FarmerDto = {
     name: '',
     idCardNumber: '',
     birthDate: '',

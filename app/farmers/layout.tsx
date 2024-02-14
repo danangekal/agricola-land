@@ -46,7 +46,7 @@ function MobileLayout({ children }: { children: ReactNode }) {
 export default function FarmersLayout({ children }: { children: ReactNode }) {
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  if (isMobile)
+  if (isMobile) {
     return (
       <FarmerProvider>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -57,6 +57,7 @@ export default function FarmersLayout({ children }: { children: ReactNode }) {
         </LocalizationProvider>
       </FarmerProvider>
     );
+  }
 
   return (
     <FarmerProvider>

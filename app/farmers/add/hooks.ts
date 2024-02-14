@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 
-import { Farmer, FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
+import { FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 import { createFarmer } from '@/app/farmers/action';
 import { useAppContext } from '@/app/state/context';
 import { setSnackbar } from '@/app/state/reducer';
@@ -10,8 +10,7 @@ const useHooks = () => {
   const { push } = useRouter();
   const type: TypeActionFarmer = 'add';
   const { dispatch } = useAppContext();
-  const initialValues: Farmer = {
-    id: 0,
+  const initialValues: FarmerDto = {
     name: '',
     idCardNumber: '',
     birthDate: '',

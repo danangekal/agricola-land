@@ -1,7 +1,3 @@
 {
-  "extends": [
-    "next",
-    "prettier",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
-  ]
+  "extends": ["next", "prettier"]
 }

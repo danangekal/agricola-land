@@ -2,7 +2,7 @@
 'use server';
 import { revalidatePath } from 'next/cache';
 
-import { Farmer } from './types';
+import { Farmer, FarmerDto } from './types';
 
 const baseUrl = process.env.API_URL;
 const username = process.env.NEXT_PUBLIC_USERNAME;
@@ -13,7 +13,7 @@ const headers = {
   'Content-type': 'application/json',
 };
 
-export async function createFarmer(values: Farmer) {
+export async function createFarmer(values: FarmerDto) {
   try {
     const res = await fetch(urlFarmer, {
       method: 'POST',
@@ -31,7 +31,7 @@ export async function createFarmer(values: Farmer) {
   revalidatePath('/farmers');
 }
 
-export async function updateFarmer(id: string, values: Farmer) {
+export async function updateFarmer(id: string, values: FarmerDto) {
   try {
     const res = await fetch(`${urlFarmer}/${id}`, {
       method: 'PUT',
