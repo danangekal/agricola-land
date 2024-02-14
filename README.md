@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 
 ## Features
 
@@ -11,20 +11,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Tech Stack
 
-- [React.js 18](https://react.dev/blog/2022/03/29/react-v18) - Blog introduce react v18.0.
-- [Next.js 14](https://nextjs.org/blog/next-14) - Blog introduce next.js 14.
-- [Typescript 5](https://www.typescriptlang.org/) - Documentation of typescript.
-- [Material UI 5](https://mui.com/material-ui/getting-started/overview/) - Documentation of material ui.
-- [Eslint 8](https://eslint.org/docs/user-guide/getting-started) - Documentation of eslint.
-- [Prettier 3](https://prettier.io/docs/en/index.html) - Documentation of prettier.
-- [Husky 9](https://typicode.github.io/husky/#/) - Documentation of husky.
-- [Commitlint](https://commitlint.js.org/#/) - Documentation of commitlint.
-- [Lint Staged 15](https://github.com/lint-staged/lint-staged) - Documentation of lint staged.
-- [React Hook Form](https://react-hook-form.com/get-started) - Documentation of react hook form.
-- [Yup](https://github.com/jquense/yup) - Documentation of yup.
-- [SWR](https://swr.vercel.app/docs/getting-started) - Documentation of swr.
-- [Axios](https://axios-http.com/) - Documentation of axios.
-- [Day.js](https://day.js.org/en/) - Documentation of day.js.
+- [React.js 18](https://react.dev/blog/2022/03/29/react-v18) - Blog introduce react v18.0 (javascript library)
+- [Next.js 14](https://nextjs.org/blog/next-14) - Blog introduce next.js 14 (react framework full stack web application)
+- [State management](https://react.dev/learn/scaling-up-with-reducer-and-context) - Global state management combine useContext & useReducer from react hooks
+- [Typescript 5](https://www.typescriptlang.org/) - Documentation of typescript (typed programming language)
+- [Material UI 5](https://mui.com/material-ui/getting-started/overview/) - Documentation of material ui (react component library)
+- [Eslint 8](https://eslint.org/docs/user-guide/getting-started) - Documentation of eslint (linter javascript)
+- [Prettier 3](https://prettier.io/docs/en/index.html) - Documentation of prettier (code formatter)
+- [Husky 9](https://typicode.github.io/husky/#/) - Documentation of husky (native git hook)
+- [Commitlint](https://commitlint.js.org/#/) - Documentation of commitlint (commit convention)
+- [Lint Staged 15](https://github.com/lint-staged/lint-staged) - Documentation of lint staged (linters on git staged)
+- [React Hook Form](https://react-hook-form.com/get-started) - Documentation of react hook form (react hooks for handle form)
+- [Yup](https://github.com/jquense/yup) - Documentation of yup (schema builder for parsing & validation)
+- [SWR](https://swr.vercel.app/docs/getting-started) - Documentation of swr (react hooks for data fetching)
+- [Axios](https://axios-http.com/) - Documentation of axios (promise based HTTP client)
+- [Day.js](https://day.js.org/en/) - Documentation of day.js (javascript library for handle date)
 
 ## Getting Started
 
@@ -35,7 +36,7 @@ Please ensure you have the following installed on your system:
 
 - **Node.js**: This project requires Node.js version 20 or higher. We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) to manage your Node.js installations. You can follow these steps to install Node.js with NVM:
 
-  1. Install NVM by following the instructions on the [NVM GitHub repository](https://github.com/nvm-sh/nvm#installing-and-updating).
+  1. Install NVM by following the instructions on the [NVM GitHub repository](https://github.com/nvm-sh/nvm#installing-and-updating)
 
   2. Once NVM is installed, open a new terminal window and install Node.js version 20 using the following command:
 
