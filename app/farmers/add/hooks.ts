@@ -1,4 +1,5 @@
 import { useRouter } from 'next/navigation';
+import dayjs from 'dayjs';
 
 import { FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 import { createFarmer } from '@/app/farmers/action';
@@ -16,7 +17,11 @@ const useHooks = () => {
     birthDate: '',
   };
   const handleSubmit = async (values: FarmerDto) => {
-    await createFarmer(values);
+    const data = {
+      ...values,
+      birthDate: dayjs(values?.birthDate).format('YYYY-MM-DD'),
+    };
+    await createFarmer(data);
     dispatch(
       setSnackbar({
         open: true,

@@ -13,12 +13,7 @@ const validationSchema = yup.object().shape({
       /^\d+$/.test(value),
     )
     .required(Strings.msg_required),
-  birthDate: yup
-    .string()
-    .test(Strings.value_col_birthdate, Strings.msg_not_valid, (value: any) =>
-      /^\d{4}-\d{2}-\d{2}$/.test(value),
-    )
-    .required(Strings.msg_required),
+  birthDate: yup.string().required(Strings.msg_required),
 });
 
 export default validationSchema;

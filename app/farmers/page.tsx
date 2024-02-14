@@ -9,6 +9,7 @@ import {
   Typography,
   Unstable_Grid2 as Grid,
 } from '@mui/material';
+import dayjs from 'dayjs';
 
 import { getCookiesCredential } from '@/app/action';
 import ActionFarmer from '@/app/components/action-farmer';
@@ -62,7 +63,9 @@ export default async function FarmerListPage() {
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>{name}</TableCell>
                     <TableCell>{idCardNumber}</TableCell>
-                    <TableCell>{birthDate}</TableCell>
+                    <TableCell>
+                      {dayjs(birthDate).format('D MMMM YYYY')}
+                    </TableCell>
                     <TableCell>
                       <ActionFarmer id={id} name={name} />
                     </TableCell>

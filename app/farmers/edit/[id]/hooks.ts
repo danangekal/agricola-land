@@ -1,5 +1,6 @@
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import dayjs from 'dayjs';
 import useSWR from 'swr';
 
 import { updateFarmer } from '@/app/farmers/action';
@@ -16,14 +17,20 @@ const useHooks = (id: string) => {
     axios,
   );
   const type: TypeActionFarmer = 'edit';
-  const values = data?.data ?? null;
-  const initialValues: FarmerDto = {
+  const valuesData = data?.data ?? null;
+  // NOTED: Bugs warning on console A component is changing an uncontrolled input to be controlled because set birtDate parse to dayjs format
+  const values = { ...valuesData, birthDate: dayjs(valuesData?.birthDate) };
+  const initialValues = {
     name: '',
     idCardNumber: '',
-    birthDate: '',
+    birthDate: dayjs(),
   };
   const handleSubmit = async (values: FarmerDto) => {
-    await updateFarmer(id, values);
+    const data = {
+      ...values,
+      birthDate: dayjs(values?.birthDate).format('YYYY-MM-DD'),
+    };
+    await updateFarmer(id, data);
     dispatch(
       setSnackbar({
         open: true,

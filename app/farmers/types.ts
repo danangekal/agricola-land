@@ -10,9 +10,9 @@ export interface FarmerDto {
   idCardNumber: string;
 
   /**
-   * The birthdate of the farmer in the format YYYY-MM-DD
+   * The birthdate of the farmer
    */
-  birthDate: string;
+  birthDate: any;
 }
 
 export interface Farmer extends FarmerDto {

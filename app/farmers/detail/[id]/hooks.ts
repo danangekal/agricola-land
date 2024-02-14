@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import dayjs from 'dayjs';
 import useSWR from 'swr';
 
-import { Farmer, FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
+import { FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
 
 const useHooks = (id: string) => {
   const { data, isLoading } = useSWR<AxiosResponse, AxiosError>(
@@ -9,11 +10,13 @@ const useHooks = (id: string) => {
     axios,
   );
   const type: TypeActionFarmer = 'detail';
-  const values = data?.data ?? null;
+  const valuesData = data?.data ?? null;
+  // NOTED: Bugs warning on console A component is changing an uncontrolled input to be controlled because set birtDate parse to dayjs format
+  const values = { ...valuesData, birthDate: dayjs(valuesData?.birthDate) };
   const initialValues: FarmerDto = {
     name: '',
     idCardNumber: '',
-    birthDate: '',
+    birthDate: dayjs(),
   };
   const handleSubmit = () => {};
 

@@ -7,8 +7,9 @@ import {
   Skeleton,
   Typography,
 } from '@mui/material';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import dayjs from 'dayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Controller } from 'react-hook-form';
 
 import Strings from '@/app/farmers/strings';
@@ -42,11 +43,20 @@ const FormFarmer = ({
     values,
     handleOnSubmitForm,
   });
+  const errorMsgBirtDate: any = errors?.birthDate?.message;
 
   return (
     <Box
       component={Paper}
-      sx={{ width: '60%', padding: 2, borderRadius: 6, bgcolor: '#FEFDF8' }}
+      sx={(theme) => ({
+        width: '60%',
+        [theme.breakpoints.down('md')]: {
+          width: '100%',
+        },
+        padding: 2,
+        borderRadius: 6,
+        bgcolor: '#FEFDF8',
+      })}
     >
       {loading ? (
         <>
@@ -141,72 +151,35 @@ const FormFarmer = ({
               <Typography>{Strings.label_col_birthdate}</Typography>
             </Grid>
             <Grid xs={12}>
-              {type === 'detail' ? (
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Controller
                   name="birthDate"
                   control={control}
                   render={({ field }) => (
-                    <TextField
-                      id={Strings.value_col_birthdate}
-                      placeholder={Strings.placeholder_birthdate}
-                      error={errors?.birthDate ? true : false}
-                      helperText={errors?.birthDate?.message}
-                      InputProps={{
-                        readOnly: true,
-                        sx: {
-                          borderRadius: 2.5,
+                    <DatePicker
+                      format="DD MMMM YYYY"
+                      disableFuture={true}
+                      readOnly={type === 'detail' ? true : false}
+                      slotProps={{
+                        textField: {
+                          size: 'small',
+                          color: 'success',
+                          placeholder: Strings.placeholder_birthdate,
+                          error: errors?.birthDate ? true : false,
+                          helperText: errorMsgBirtDate,
+                          InputProps: {
+                            sx: {
+                              borderRadius: 2.5,
+                            },
+                          },
+                          fullWidth: true,
                         },
                       }}
-                      fullWidth
                       {...field}
                     />
                   )}
                 />
-              ) : (
-                <Controller
-                  name="birthDate"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      id={Strings.value_col_birthdate}
-                      placeholder={Strings.placeholder_birthdate}
-                      error={errors?.birthDate ? true : false}
-                      helperText={errors?.birthDate?.message || ''}
-                      InputProps={{
-                        sx: {
-                          borderRadius: 2.5,
-                        },
-                      }}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
-                />
-                // <Controller
-                //   render={({ field }) => (
-                //     <DatePicker
-                //       slotProps={{
-                //         textField: {
-                //           size: "small",
-                //           color: "success",
-                //           placeholder: Strings.placeholder_birthdate,
-                //           error: errors?.birthDate ? true : false,
-                //           helperText: errors.birthDate?.message,
-                //           InputProps: {
-                //             sx: {
-                //               borderRadius: 2.5,
-                //             },
-                //           },
-                //           fullWidth: true,
-                //         },
-                //       }}
-                //       {...field}
-                //     />
-                //   )}
-                //   name="birthDate"
-                //   control={control}
-                // />
-              )}
+              </LocalizationProvider>
             </Grid>
             {type !== 'detail' ? (
               <>
