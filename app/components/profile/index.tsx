@@ -49,7 +49,7 @@ const Profile = ({ credential }: ProfileProps) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         MenuListProps={{
           'aria-labelledby': `menu-${Strings.value_open_profile}`,
         }}

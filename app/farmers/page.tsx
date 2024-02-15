@@ -5,7 +5,7 @@ import { getCookiesCredential } from '@/app/action';
 import ButtonAdd from '@/app/components/button-add';
 import Profile from '@/app/components/profile';
 import TableFarmer from '@/app/components/table-farmer';
-import { getFarmerList } from '@/app/farmers/action';
+// import { getFarmerList } from '@/app/farmers/action';
 import Strings from './strings';
 
 export const metadata: Metadata = {
@@ -15,10 +15,9 @@ export const metadata: Metadata = {
 
 export default async function FarmerListPage() {
   const credential = await getCookiesCredential();
-  const data = await getFarmerList(1);
 
   return (
-    <Grid container spacing={1} sx={{ padding: 2 }}>
+    <Grid container spacing={3} sx={{ padding: 2 }}>
       <Grid xs={12}>
         <Profile credential={credential} />
       </Grid>
@@ -31,7 +30,7 @@ export default async function FarmerListPage() {
         </Box>
       </Grid>
       <Grid xs={12}>
-        <TableFarmer data={data} />
+        <TableFarmer />
       </Grid>
     </Grid>
   );

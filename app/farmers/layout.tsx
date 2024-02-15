@@ -3,6 +3,7 @@ import { ReactNode, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   Box,
+  Container,
   Drawer,
   Unstable_Grid2 as Grid,
   IconButton,
@@ -22,7 +23,8 @@ function DestopLayout({ children }: { children: ReactNode }) {
       <Grid sm={8} md={9} lg={10} xl={10}>
         <Box
           sx={{
-            height: '100vh',
+            height: '1100px',
+            maxHeight: '500vh',
             bgcolor: '#eeefe3',
             paddingY: 3,
           }}
@@ -39,7 +41,7 @@ function MobileLayout({ children }: { children: ReactNode }) {
   const handleSidebar = () => setSidebar(!sidebar);
 
   return (
-    <>
+    <Container sx={{ bgcolor: '#eeefe3' }}>
       <Box
         sx={{
           paddingTop: 2,
@@ -62,7 +64,7 @@ function MobileLayout({ children }: { children: ReactNode }) {
         <Sidebar isMobile={true} handleClose={handleSidebar} />
       </Drawer>
       {children}
-    </>
+    </Container>
   );
 }
 

@@ -117,6 +117,6 @@ export async function getFarmerList(page: number) {
   if (farmers?.length > 0) {
     return farmers;
   } else {
-    return [];
+    return null;
   }
 }

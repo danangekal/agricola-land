@@ -17,6 +17,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            borderLeft: '3px solid #00713B',
+          },
+        },
+      },
+    },
   },
   palette: {
     mode: 'light',

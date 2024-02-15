@@ -25,7 +25,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [React Hook Form](https://react-hook-form.com/get-started) - Documentation of react hook form (react hooks for handle form)
 - [Yup](https://github.com/jquense/yup) - Documentation of yup (schema builder for parsing & validation)
 - [SWR](https://swr.vercel.app/docs/getting-started) - Documentation of swr (react hooks for data fetching)
-- [Axios](https://axios-http.com/) - Documentation of axios (promise based HTTP client)
 - [Day.js](https://day.js.org/en/) - Documentation of day.js (javascript library for handle date)
 - [Jest](https://jestjs.io/docs/getting-started) - Documentation of jest (javascript testing framework)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Documentation of react testing library (react UI testing)
@@ -80,9 +79,9 @@ yarn install
 
 Please don't forget setup environment variable credential (username & password) & API URL (Mock HTTP Server) with the following:
 
-- NEXT_PUBLIC_USERNAME=dayatani -> you must setup same with setup accepted in mock server authentication
-- NEXT_PUBLIC_PASSWORD=dayatani -> you free to setup password but must be same with mock server authentication
-- API_URL=http://localhost:8080 -> you free to setup PORT API URL but must be same with mock server but the recommedation on mock server is 8080
+- `NEXT_PUBLIC_USERNAME=dayatani` -> you must setup same with setup accepted in mock server authentication
+- `NEXT_PUBLIC_PASSWORD=dayatani` -> you free to setup password but must be same with mock server authentication
+- `API_URL=http://localhost:8080` -> you free to setup PORT API URL but must be same with mock server but the recommedation on mock server is 8080
 
 ```bash
 copy .env.example to .env.local
@@ -93,9 +92,9 @@ yarn dev
 
 Please don't forget setup environment variable credential (username & password) & API URL (Mock HTTP Server) with the following:
 
-- NEXT_PUBLIC_USERNAME=dayatani -> you must setup same with setup accepted in mock server authentication
-- NEXT_PUBLIC_PASSWORD=yourpassword -> you free to setup password but must be same with mock server authentication
-- API_URL=yourapiurl -> you free to setup API URL but must be same with mock server production
+- `NEXT_PUBLIC_USERNAME=dayatani` -> you must setup same with setup accepted in mock server authentication
+- `NEXT_PUBLIC_PASSWORD=yourpassword` -> you free to setup password but must be same with mock server authentication
+- `API_URL=yourapiurl` -> you free to setup API URL but must be same with mock server production
 
 ```bash
 copy .env.example to .env.production

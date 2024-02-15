@@ -57,6 +57,8 @@ const Strings = {
   title_modal_delete: 'Delete Farmer',
   msg_modal_delete:
     'Are you sure you want to delete #name ? This action cannot be undone',
+  msg_end_page: "You've hit the end of the page.",
+  msg_no_data: 'No data farmers',
 };
 
 export default Strings;

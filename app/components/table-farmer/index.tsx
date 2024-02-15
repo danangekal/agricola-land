@@ -4,10 +4,13 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   Box,
+  CircularProgress,
   Collapse,
   Table,
   TableBody,
+  TableContainer,
   TableCell,
+  TableHead,
   TableRow,
   Typography,
   Unstable_Grid2 as Grid,
@@ -19,17 +22,38 @@ import Button from '@/app/components/button';
 import Strings from '@/app/farmers/strings';
 import { Farmer } from '@/app/farmers/types';
 import useHooks from './hooks';
-import { TableFarmerProps } from './types';
 
-const TableFarmer = ({ data }: TableFarmerProps) => {
-  const { collapse, handleClickCollapse, isMobile } = useHooks();
+const TableFarmer = () => {
+  const {
+    collapse,
+    dataTable,
+    handleClickCollapse,
+    handleLoadData,
+    isEmpty,
+    isMobile,
+    isLoadingMore,
+    isReachingEnd,
+  } = useHooks();
 
   if (isMobile) {
     return (
-      <>
-        <Table sx={{ marginTop: 3 }}>
+      <TableContainer sx={{ maxHeight: 500 }}>
+        <Table>
           <TableBody sx={{ bgcolor: '#ffffff' }}>
-            {data?.map(({ id, name, birthDate, idCardNumber }: Farmer) => (
+            {isEmpty ? (
+              <TableRow>
+                <TableCell align="center">
+                  <Typography
+                    component="h6"
+                    variant="subtitle1"
+                    sx={{ fontWeight: 600 }}
+                  >
+                    {Strings.msg_no_data}
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            ) : null}
+            {dataTable?.map(({ id, name, birthDate, idCardNumber }: Farmer) => (
               <Fragment key={id}>
                 <TableRow>
                   <TableCell>
@@ -116,62 +140,137 @@ const TableFarmer = ({ data }: TableFarmerProps) => {
               </Fragment>
             ))}
           </TableBody>
-          <TableBody sx={{ bgcolor: '#ffffff' }}>
-            <TableRow>
-              <TableCell align="center">
-                <Button variant="outlined" sx={{ color: '#00371d' }}>
-                  {Strings.label_btn_load}
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
+          {!isEmpty ? (
+            <TableBody sx={{ bgcolor: '#ffffff' }}>
+              <TableRow>
+                <TableCell align="center">
+                  {isReachingEnd ? (
+                    <Typography
+                      component="h6"
+                      variant="subtitle1"
+                      sx={{ fontWeight: 600 }}
+                    >
+                      {Strings.msg_end_page}
+                    </Typography>
+                  ) : (
+                    <Button
+                      variant="outlined"
+                      disabled={isLoadingMore || isReachingEnd}
+                      onClick={handleLoadData}
+                      sx={{ color: '#00371d' }}
+                      fullWidth
+                    >
+                      {isLoadingMore ? (
+                        <CircularProgress size={20} color="success" />
+                      ) : (
+                        Strings.label_btn_load
+                      )}
+                    </Button>
+                  )}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          ) : null}
         </Table>
-      </>
+      </TableContainer>
     );
   }
 
   return (
-    <Table sx={{ marginTop: 3 }}>
-      <TableBody>
-        <TableRow>
-          <TableCell>{Strings.label_col_no}</TableCell>
-          <TableCell>{Strings.label_col_name}</TableCell>
-          <TableCell>{Strings.label_col_id_number}</TableCell>
-          <TableCell>{Strings.label_col_birthdate}</TableCell>
-          <TableCell>{Strings.label_col_action}</TableCell>
-        </TableRow>
-      </TableBody>
-      <TableBody sx={{ bgcolor: '#ffffff' }}>
-        {data?.map(
-          ({ id, name, birthDate, idCardNumber }: Farmer, index: number) => (
-            <Fragment key={`${index}-${id}`}>
-              <TableRow>
-                <TableCell>{index + 1}</TableCell>
-                <TableCell>{name}</TableCell>
-                <TableCell>{idCardNumber}</TableCell>
-                <TableCell>{dayjs(birthDate).format('D MMMM YYYY')}</TableCell>
-                <TableCell>
-                  <ActionFarmer id={id} name={name} isMobile={isMobile} />
-                </TableCell>
-              </TableRow>
-            </Fragment>
-          ),
-        )}
-      </TableBody>
-      <TableBody sx={{ bgcolor: '#ffffff' }}>
-        <TableRow>
-          <TableCell></TableCell>
-          <TableCell></TableCell>
-          <TableCell align="right">
-            <Button variant="outlined" sx={{ color: '#00371d' }}>
-              {Strings.label_btn_load}
-            </Button>
-          </TableCell>
-          <TableCell></TableCell>
-          <TableCell></TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <TableContainer sx={{ maxHeight: 880 }}>
+      <Table stickyHeader>
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{ bgcolor: '#eeefe3' }}>
+              {Strings.label_col_no}
+            </TableCell>
+            <TableCell sx={{ bgcolor: '#eeefe3' }}>
+              {Strings.label_col_name}
+            </TableCell>
+            <TableCell sx={{ bgcolor: '#eeefe3' }}>
+              {Strings.label_col_id_number}
+            </TableCell>
+            <TableCell sx={{ bgcolor: '#eeefe3' }}>
+              {Strings.label_col_birthdate}
+            </TableCell>
+            <TableCell sx={{ bgcolor: '#eeefe3' }}>
+              {Strings.label_col_action}
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody sx={{ bgcolor: '#ffffff' }}>
+          {isEmpty ? (
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell align="center">
+                <Typography
+                  component="h6"
+                  variant="subtitle1"
+                  sx={{ fontWeight: 600 }}
+                >
+                  {Strings.msg_no_data}
+                </Typography>
+              </TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          ) : null}
+          {dataTable?.map(
+            ({ id, name, birthDate, idCardNumber }: Farmer, index: number) => (
+              <Fragment key={`${index}-${id}`}>
+                <TableRow>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{name}</TableCell>
+                  <TableCell>{idCardNumber}</TableCell>
+                  <TableCell>
+                    {dayjs(birthDate).format('D MMMM YYYY')}
+                  </TableCell>
+                  <TableCell>
+                    <ActionFarmer id={id} name={name} isMobile={isMobile} />
+                  </TableCell>
+                </TableRow>
+              </Fragment>
+            ),
+          )}
+        </TableBody>
+        {!isEmpty ? (
+          <TableBody sx={{ bgcolor: '#ffffff' }}>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell align="center">
+                {isReachingEnd ? (
+                  <Typography
+                    component="h6"
+                    variant="subtitle1"
+                    sx={{ fontWeight: 600 }}
+                  >
+                    {Strings.msg_end_page}
+                  </Typography>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    disabled={isLoadingMore || isReachingEnd}
+                    onClick={handleLoadData}
+                    sx={{ color: '#00371d' }}
+                    fullWidth
+                  >
+                    {isLoadingMore ? (
+                      <CircularProgress size={20} color="success" />
+                    ) : (
+                      Strings.label_btn_load
+                    )}
+                  </Button>
+                )}
+              </TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableBody>
+        ) : null}
+      </Table>
+    </TableContainer>
   );
 };
 

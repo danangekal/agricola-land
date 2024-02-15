@@ -16,7 +16,8 @@ const Sidebar = ({ isMobile = false, handleClose }: SidebarProps) => {
     <Box
       sx={{
         width: isMobile ? 250 : '100%',
-        height: '100vh',
+        height: '1100px',
+        maxHeight: '500vh',
         bgcolor: '#eeefe3',
       }}
       onClick={handleClose}
@@ -38,9 +39,9 @@ const Sidebar = ({ isMobile = false, handleClose }: SidebarProps) => {
         />
       </Box>
       <MenuList>
-        {DummyMenu.map(({ name, icon, pathname }: Menu, index) => (
+        {DummyMenu.map(({ name, icon }: Menu, index) => (
           <Box key={`${index}-${name}`}>
-            <MenuItem>
+            <MenuItem selected={index === 0}>
               <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText>
                 <Typography
