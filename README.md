@@ -8,7 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - Farmer edit page (done)
 - Farmer view page (done)
 - Responsive UI support desktop, tab & mobile (done)
-- Unit testing (setup done & already coverage < 3%)
+- Unit testing (setup done & already coverage < 14%)
 
 ## Tech Stack
 
@@ -100,6 +100,26 @@ Please don't forget setup environment variable credential (username & password) 
 copy .env.example to .env.production
 yarn build
 yarn start
+```
+
+#### Linter
+
+```bash
+yarn lint
+```
+
+#### Formater
+
+```bash
+yarn format
+```
+
+#### Testing
+
+```bash
+yarn test
+yarn test:watch -> (running mode watch for watch files for changes and rerun tests related to changed files)
+yarn test:ci -> (running in a CI environment)
 ```
 
 ## Learn More

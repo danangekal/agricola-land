@@ -1,6 +1,7 @@
 const Strings = {
   title_app: 'Agricola Land',
   desc_home: 'Dasboard for internal DayaTani team',
+  alt_img_logo: 'DayaTani Logo',
   label_btn_sign_in: 'Sign In',
   label_txtbox_username: 'Username',
   id_txtbox_username: 'username',

@@ -24,6 +24,8 @@ const useHooks = () => {
   } = useForm<Credential>({
     defaultValues: initialValues,
     resolver: yupResolver(validationSchema),
+    mode: 'onChange',
+    reValidateMode: 'onSubmit',
   });
   const onSubmit: SubmitHandler<Credential> = async ({
     username,

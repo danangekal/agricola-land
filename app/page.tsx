@@ -32,14 +32,16 @@ export default function HomePage() {
         <Grid container spacing={2}>
           <Grid xs={12} display="flex" justifyContent="center">
             <Avatar
-              alt="DayaTani Logo"
+              alt={Strings.alt_img_logo}
               src="/dayatani.png"
               variant="square"
               sx={{ width: '70%', height: '100%' }}
             />
           </Grid>
           <Grid xs={12}>
-            <Typography>{Strings.label_txtbox_username}</Typography>
+            <Typography component="h5" variant="body1">
+              {Strings.label_txtbox_username}
+            </Typography>
           </Grid>
           <Grid xs={12}>
             <Controller
@@ -64,7 +66,9 @@ export default function HomePage() {
             />
           </Grid>
           <Grid xs={12}>
-            <Typography>{Strings.label_txtbox_password}</Typography>
+            <Typography component="h5" variant="body1">
+              {Strings.label_txtbox_password}
+            </Typography>
           </Grid>
           <Grid xs={12}>
             <Controller

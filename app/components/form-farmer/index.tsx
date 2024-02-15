@@ -98,7 +98,9 @@ const FormFarmer = ({
             <>
               <Grid container spacing={2}>
                 <Grid xs={12}>
-                  <Typography>{Strings.label_col_name}</Typography>
+                  <Typography component="h5" variant="body1">
+                    {Strings.label_col_name}
+                  </Typography>
                 </Grid>
                 <Grid xs={12}>
                   <Controller
@@ -123,7 +125,9 @@ const FormFarmer = ({
                   />
                 </Grid>
                 <Grid xs={12}>
-                  <Typography>{Strings.label_col_id_number}</Typography>
+                  <Typography component="h5" variant="body1">
+                    {Strings.label_col_id_number}
+                  </Typography>
                 </Grid>
                 <Grid xs={12}>
                   <Controller
@@ -148,7 +152,9 @@ const FormFarmer = ({
                   />
                 </Grid>
                 <Grid xs={12}>
-                  <Typography>{Strings.label_col_birthdate}</Typography>
+                  <Typography component="h5" variant="body1">
+                    {Strings.label_col_birthdate}
+                  </Typography>
                 </Grid>
                 <Grid xs={12}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
