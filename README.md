@@ -34,6 +34,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 This project using node >= 18.17 and recommended use node 20.11 & yarn 1.22.19
 Please ensure you have the following installed on your system:
 
+- **Internet connection**: Please make sure there is an internet connection for access install dependency & fonts
+
 - **Node.js**: This project requires Node.js version 20 or higher. We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) to manage your Node.js installations. You can follow these steps to install Node.js with NVM:
 
   1. Install NVM by following the instructions on the [NVM GitHub repository](https://github.com/nvm-sh/nvm#installing-and-updating)
