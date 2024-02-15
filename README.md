@@ -2,12 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Features
 
-- Login page with credential (user & password) validation
-- Farmer list page with action CRUD
-- Farmer create page
-- Farmer edit page
-- Farmer view page
-- Responsive UI support desktop, tab & mobile
+- Login page with credential (user & password) validation (done)
+- Farmer list page with action CRUD (done - without loadmore)
+- Farmer create page (done)
+- Farmer edit page (done)
+- Farmer view page (done)
+- Responsive UI support desktop, tab & mobile (done)
+- Unit testing (setup done & already coverage < 3%)
 
 ## Tech Stack
 
@@ -26,6 +27,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [SWR](https://swr.vercel.app/docs/getting-started) - Documentation of swr (react hooks for data fetching)
 - [Axios](https://axios-http.com/) - Documentation of axios (promise based HTTP client)
 - [Day.js](https://day.js.org/en/) - Documentation of day.js (javascript library for handle date)
+- [Jest](https://jestjs.io/docs/getting-started) - Documentation of jest (javascript testing framework)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Documentation of react testing library (react UI testing)
 
 ## Getting Started
 

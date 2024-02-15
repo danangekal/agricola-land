@@ -27,7 +27,7 @@ const useHooks = ({ id, isMobile, name }: ActionFarmerProps) => {
     else setAnchorEl(event.currentTarget);
   };
   const handleClose = () => setAnchorEl(null);
-  const onHandleShowDialog = () => {
+  const handleShowDialog = () => {
     handleClose();
     setIsDialog(true);
   };
@@ -74,7 +74,7 @@ const useHooks = ({ id, isMobile, name }: ActionFarmerProps) => {
         </Typography>
       ),
       icon: <DeleteForeverOutlinedIcon color="error" />,
-      handleOnClick: onHandleShowDialog,
+      handleOnClick: handleShowDialog,
     },
   ];
 

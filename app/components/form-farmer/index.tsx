@@ -36,8 +36,8 @@ const FormFarmer = ({
     isDialog,
     titleDialog,
     contentDialog,
-    onHandleCloseDialog,
-    onHandleShowDialog,
+    handleCloseDialog,
+    handleShowDialog,
   } = useHooks({
     type,
     initialValues,
@@ -187,7 +187,7 @@ const FormFarmer = ({
                       <Divider sx={{ bgcolor: '#E1E3D4' }} />
                     </Grid>
                     <Grid xs={12} display="flex" justifyContent="flex-end">
-                      <Button onClick={onHandleShowDialog}>
+                      <Button onClick={handleShowDialog}>
                         {labelBtnSubmit[type]}
                       </Button>
                     </Grid>
@@ -209,7 +209,7 @@ const FormFarmer = ({
           {loading ? (
             <Skeleton height={60} width="100%" />
           ) : (
-            <Button onClick={onHandleShowDialog} fullWidth>
+            <Button onClick={handleShowDialog} fullWidth>
               {labelBtnSubmit[type]}
             </Button>
           )}
@@ -220,7 +220,7 @@ const FormFarmer = ({
         type={type}
         title={titleDialog[type]}
         content={contentDialog[type]}
-        handleOnCancel={onHandleCloseDialog}
+        handleOnCancel={handleCloseDialog}
         handleOnSubmit={handleSubmit(onSubmit)}
       />
     </Grid>

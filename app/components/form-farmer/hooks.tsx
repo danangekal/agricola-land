@@ -39,8 +39,8 @@ const useHooks = ({
   });
   const onSubmit: SubmitHandler<FarmerDto> = (values) =>
     handleOnSubmitForm(values);
-  const onHandleShowDialog = () => setIsDialog(true);
-  const onHandleCloseDialog = () => setIsDialog(false);
+  const handleShowDialog = () => setIsDialog(true);
+  const handleCloseDialog = () => setIsDialog(false);
 
   return {
     control,
@@ -51,8 +51,8 @@ const useHooks = ({
     isDialog,
     titleDialog,
     contentDialog,
-    onHandleCloseDialog,
-    onHandleShowDialog,
+    handleCloseDialog,
+    handleShowDialog,
   };
 };
 
