@@ -59,6 +59,8 @@ const Strings = {
     'Are you sure you want to delete #name ? This action cannot be undone',
   msg_end_page: "You've hit the end of the page.",
   msg_no_data: 'No data farmers',
+  title_error_general: 'Something Wrong!',
+  msg_error_general: 'Failed request to server',
 };
 
 export default Strings;

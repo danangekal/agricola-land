@@ -36,17 +36,28 @@ const useHooks = ({ id, isMobile, name }: ActionFarmerProps) => {
   const handleClickDetail = () => push(`/farmers/detail/${id}`);
   const handleClickEdit = () => push(`/farmers/edit/${id}`);
   const handleClickDelete = async () => {
-    await deleteFarmer(id);
-    handleClose();
-    dispatch(
-      setSnackbar({
-        open: true,
-        type: 'success',
-        title: Strings.title_success_delete,
-        message: Strings.msg_success_delete,
-      }),
-    );
-    push('/farmers');
+    try {
+      await deleteFarmer(id);
+      handleClose();
+      dispatch(
+        setSnackbar({
+          open: true,
+          type: 'success',
+          title: Strings.title_success_delete,
+          message: Strings.msg_success_delete,
+        }),
+      );
+      push('/farmers');
+    } catch (_e) {
+      dispatch(
+        setSnackbar({
+          open: true,
+          type: 'error',
+          title: Strings.title_error_general,
+          message: Strings.msg_error_general,
+        }),
+      );
+    }
   };
   const options: ActionMenu[] = [
     {

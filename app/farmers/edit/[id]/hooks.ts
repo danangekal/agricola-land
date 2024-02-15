@@ -24,20 +24,32 @@ const useHooks = (id: string) => {
     birthDate: dayjs(),
   };
   const handleSubmit = async (values: FarmerDto) => {
-    const data = {
-      ...values,
-      birthDate: dayjs(values?.birthDate).format('YYYY-MM-DD'),
-    };
-    await updateFarmer(id, data);
-    dispatch(
-      setSnackbar({
-        open: true,
-        type: 'success',
-        title: Strings.title_success_edit,
-        message: Strings.msg_success_edit,
-      }),
-    );
-    push('/farmers');
+    try {
+      const data = {
+        ...values,
+        birthDate: dayjs(values?.birthDate).format('YYYY-MM-DD'),
+      };
+
+      await updateFarmer(id, data);
+      dispatch(
+        setSnackbar({
+          open: true,
+          type: 'success',
+          title: Strings.title_success_edit,
+          message: Strings.msg_success_edit,
+        }),
+      );
+      push('/farmers');
+    } catch (_e) {
+      dispatch(
+        setSnackbar({
+          open: true,
+          type: 'error',
+          title: Strings.title_error_general,
+          message: Strings.msg_error_general,
+        }),
+      );
+    }
   };
 
   return { type, initialValues, isLoading, isMobile, values, handleSubmit };
