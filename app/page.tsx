@@ -30,7 +30,7 @@ export default function HomePage() {
         }}
       >
         <Grid container spacing={2}>
-          <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid xs={12} display="flex" justifyContent="center">
             <Avatar
               alt="DayaTani Logo"
               src="/dayatani.png"

@@ -3,6 +3,8 @@ const Strings = {
   title_list: 'Farmer List',
   desc_list: 'List of farmer',
   label_btn_add: 'Add Farmer',
+  label_btn_load: 'Load More',
+  label_collapse: 'Collapse',
   title_add: 'Add Farmer',
   desc_add: 'Form add for create a farmer',
   title_detail: 'Detail Farmer',

@@ -31,7 +31,7 @@ const Dialog = ({
     <MuiDialog open={open} onClick={handleOnCancel}>
       <MuiDialogTitle
         id="alert-dialog-title"
-        sx={{ m: 0, p: 2, color: '#22231F' }}
+        sx={{ margin: 0, padding: 2, color: '#22231F' }}
       >
         {title}
       </MuiDialogTitle>
@@ -47,12 +47,15 @@ const Dialog = ({
       >
         <CloseIcon />
       </IconButton>
-      <MuiDialogContent sx={{ m: 0, p: 2, color: '#22231F' }} dividers>
+      <MuiDialogContent
+        sx={{ margin: 0, padding: 2, color: '#22231F' }}
+        dividers
+      >
         <MuiDialogContentText id="alert-dialog-description">
           {content}
         </MuiDialogContentText>
       </MuiDialogContent>
-      <MuiDialogActions sx={{ m: 0, p: 2 }}>
+      <MuiDialogActions sx={{ margin: 0, padding: 2 }}>
         <Button
           id={Strings.id_button_no_dialog}
           name={Strings.id_button_no_dialog}

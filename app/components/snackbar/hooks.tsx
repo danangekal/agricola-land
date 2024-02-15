@@ -4,7 +4,7 @@ import { setSnackbar } from '@/app/state/reducer';
 const useHooks = () => {
   const { state, dispatch } = useAppContext();
   const { snackbar } = state;
-  const durationHideAlert = 3000;
+  const durationHideAlert = 1000;
   const onClose = () => {
     dispatch(
       setSnackbar({

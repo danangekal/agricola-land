@@ -20,19 +20,21 @@ export default async function AddFarmerLayout({
   const credential = await getCookiesCredential();
 
   return (
-    <Grid container spacing={2} sx={{ padding: 2 }}>
-      <Grid xs={12}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <ButtonBack />
-          <Profile credential={credential} />
-        </Box>
+    <>
+      <Grid container spacing={2} sx={{ padding: 2 }}>
+        <Grid xs={12}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <ButtonBack />
+            <Profile credential={credential} />
+          </Box>
+        </Grid>
+        <Grid xs={12}>
+          <Typography component="h5" variant="h6">
+            {Strings.title_add}
+          </Typography>
+        </Grid>
       </Grid>
-      <Grid xs={12}>
-        <Typography component="h5" variant="h6">
-          {Strings.title_add}
-        </Typography>
-      </Grid>
-      <Grid xs={12}>{children}</Grid>
-    </Grid>
+      {children}
+    </>
   );
 }

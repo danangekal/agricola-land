@@ -1,4 +1,5 @@
 import { useRouter } from 'next/navigation';
+import { useMediaQuery } from '@mui/material';
 import dayjs from 'dayjs';
 
 import { FarmerDto, TypeActionFarmer } from '@/app/farmers/types';
@@ -9,8 +10,9 @@ import Strings from '../strings';
 
 const useHooks = () => {
   const { push } = useRouter();
-  const type: TypeActionFarmer = 'add';
   const { dispatch } = useAppContext();
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const type: TypeActionFarmer = 'add';
   const initialValues: FarmerDto = {
     name: '',
     idCardNumber: '',
@@ -33,7 +35,7 @@ const useHooks = () => {
     push('/farmers');
   };
 
-  return { handleSubmit, initialValues, type };
+  return { handleSubmit, initialValues, isMobile, type };
 };
 
 export default useHooks;

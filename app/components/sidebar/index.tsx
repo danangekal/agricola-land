@@ -9,15 +9,17 @@ import {
 } from '@mui/material';
 
 import { DummyMenu } from './menu';
-import { Menu } from './types';
+import { Menu, SidebarProps } from './types';
 
-const Sidebar = () => {
+const Sidebar = ({ isMobile = false, handleClose }: SidebarProps) => {
   return (
     <Box
       sx={{
+        width: isMobile ? 250 : '100%',
         height: '100vh',
         bgcolor: '#eeefe3',
       }}
+      onClick={handleClose}
     >
       <Box
         sx={{

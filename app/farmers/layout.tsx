@@ -1,9 +1,11 @@
 'use client';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   Box,
-  Container,
+  Drawer,
   Unstable_Grid2 as Grid,
+  IconButton,
   useMediaQuery,
 } from '@mui/material';
 
@@ -33,11 +35,34 @@ function DestopLayout({ children }: { children: ReactNode }) {
 }
 
 function MobileLayout({ children }: { children: ReactNode }) {
+  const [sidebar, setSidebar] = useState(false);
+  const handleSidebar = () => setSidebar(!sidebar);
+
   return (
-    <Container>
-      {/* <Sidebar /> */}
+    <>
+      <Box
+        sx={{
+          paddingTop: 2,
+          paddingBottom: 0,
+          paddingLeft: 3,
+          paddingRight: 0,
+          margin: 0,
+        }}
+      >
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleSidebar}
+          edge="start"
+        >
+          <MenuIcon />
+        </IconButton>
+      </Box>
+      <Drawer anchor="left" open={sidebar} onClose={handleSidebar}>
+        <Sidebar isMobile={true} handleClose={handleSidebar} />
+      </Drawer>
       {children}
-    </Container>
+    </>
   );
 }
 

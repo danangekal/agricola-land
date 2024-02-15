@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@mui/material';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
 import useSWR from 'swr';
@@ -9,6 +10,7 @@ const useHooks = (id: string) => {
     `/api/farmers/${id}`,
     axios,
   );
+  const isMobile = useMediaQuery('(max-width:600px)');
   const type: TypeActionFarmer = 'detail';
   const valuesData = data?.data ?? null;
   // NOTED: Bugs warning on console A component is changing an uncontrolled input to be controlled because set birtDate parse to dayjs format
@@ -20,7 +22,7 @@ const useHooks = (id: string) => {
   };
   const handleSubmit = () => {};
 
-  return { type, initialValues, isLoading, values, handleSubmit };
+  return { type, initialValues, isLoading, isMobile, values, handleSubmit };
 };
 
 export default useHooks;

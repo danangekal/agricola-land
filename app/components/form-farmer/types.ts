@@ -18,6 +18,10 @@ export interface FormFarmerProps {
    */
   loading?: boolean;
   /**
+   * isMobile (true/false) of form
+   */
+  isMobile?: boolean;
+  /**
    * The action of submit form
    */
   handleOnSubmitForm: (values: FarmerDto) => void;

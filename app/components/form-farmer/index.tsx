@@ -24,6 +24,7 @@ const FormFarmer = ({
   initialValues,
   values,
   loading = false,
+  isMobile = false,
   handleOnSubmitForm,
 }: FormFarmerProps) => {
   const {
@@ -46,159 +47,174 @@ const FormFarmer = ({
   const errorMsgBirtDate: any = errors?.birthDate?.message;
 
   return (
-    <Box
-      component={Paper}
-      sx={(theme) => ({
-        width: '60%',
-        [theme.breakpoints.down('md')]: {
-          width: '100%',
-        },
-        padding: 2,
-        borderRadius: 6,
-        bgcolor: '#FEFDF8',
-      })}
-    >
-      {loading ? (
-        <>
-          <Grid container spacing={2}>
-            <Grid xs={12}>
-              <Skeleton height={40} width="30%" />
-            </Grid>
-            <Grid xs={12}>
-              <Skeleton height={40} />
-            </Grid>
-            <Grid xs={12}>
-              <Skeleton height={40} width="30%" />
-            </Grid>
-            <Grid xs={12}>
-              <Skeleton height={40} />
-            </Grid>
-            <Grid xs={12}>
-              <Skeleton height={40} width="30%" />
-            </Grid>
-            <Grid xs={12}>
-              <Skeleton height={40} />
-            </Grid>
-            {type !== 'detail' ? (
-              <>
+    <Grid container spacing={2}>
+      <Grid xs={12} sx={{ padding: 2 }}>
+        <Box
+          component={Paper}
+          sx={(theme) => ({
+            width: '60%',
+            [theme.breakpoints.down('md')]: {
+              width: '100%',
+            },
+            padding: 2,
+            borderRadius: 6,
+            bgcolor: '#FEFDF8',
+          })}
+        >
+          {loading ? (
+            <>
+              <Grid container spacing={2}>
                 <Grid xs={12}>
-                  <Divider sx={{ bgcolor: '#E1E3D4' }} />
+                  <Skeleton height={40} width="30%" />
                 </Grid>
-                <Grid
-                  xs={12}
-                  sx={{ display: 'flex', justifyContent: 'flex-end' }}
-                >
-                  <Skeleton height={50} width="20%" />
+                <Grid xs={12}>
+                  <Skeleton height={40} />
                 </Grid>
-              </>
-            ) : null}
-          </Grid>
-        </>
-      ) : (
-        <>
-          <Grid container spacing={2}>
-            <Grid xs={12}>
-              <Typography>{Strings.label_col_name}</Typography>
-            </Grid>
-            <Grid xs={12}>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    id={Strings.value_col_name}
-                    placeholder={Strings.placeholder_name}
-                    error={errors?.name ? true : false}
-                    helperText={errors?.name?.message}
-                    InputProps={{
-                      readOnly: type === 'detail' ? true : false,
-                      sx: {
-                        borderRadius: 2.5,
-                      },
-                    }}
-                    fullWidth
-                    {...field}
-                  />
-                )}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <Typography>{Strings.label_col_id_number}</Typography>
-            </Grid>
-            <Grid xs={12}>
-              <Controller
-                name="idCardNumber"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    id={Strings.value_col_id_number}
-                    placeholder={Strings.placeholder_id_number}
-                    error={errors?.idCardNumber ? true : false}
-                    helperText={errors.idCardNumber?.message}
-                    InputProps={{
-                      readOnly: type === 'detail' ? true : false,
-                      sx: {
-                        borderRadius: 2.5,
-                      },
-                    }}
-                    fullWidth
-                    {...field}
-                  />
-                )}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <Typography>{Strings.label_col_birthdate}</Typography>
-            </Grid>
-            <Grid xs={12}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Controller
-                  name="birthDate"
-                  control={control}
-                  render={({ field }) => (
-                    <DatePicker
-                      format="DD MMMM YYYY"
-                      disableFuture={true}
-                      readOnly={type === 'detail' ? true : false}
-                      slotProps={{
-                        textField: {
-                          size: 'small',
-                          color: 'success',
-                          placeholder: Strings.placeholder_birthdate,
-                          error: errors?.birthDate ? true : false,
-                          helperText: errorMsgBirtDate,
-                          InputProps: {
-                            sx: {
-                              borderRadius: 2.5,
-                            },
+                <Grid xs={12}>
+                  <Skeleton height={40} width="30%" />
+                </Grid>
+                <Grid xs={12}>
+                  <Skeleton height={40} />
+                </Grid>
+                <Grid xs={12}>
+                  <Skeleton height={40} width="30%" />
+                </Grid>
+                <Grid xs={12}>
+                  <Skeleton height={40} />
+                </Grid>
+                {type !== 'detail' && !isMobile ? (
+                  <>
+                    <Grid xs={12}>
+                      <Divider sx={{ bgcolor: '#E1E3D4' }} />
+                    </Grid>
+                    <Grid xs={12} display="flex" justifyContent="flex-end">
+                      <Skeleton height={50} width="20%" />
+                    </Grid>
+                  </>
+                ) : null}
+              </Grid>
+            </>
+          ) : (
+            <>
+              <Grid container spacing={2}>
+                <Grid xs={12}>
+                  <Typography>{Strings.label_col_name}</Typography>
+                </Grid>
+                <Grid xs={12}>
+                  <Controller
+                    name="name"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        id={Strings.value_col_name}
+                        placeholder={Strings.placeholder_name}
+                        error={errors?.name ? true : false}
+                        helperText={errors?.name?.message}
+                        InputProps={{
+                          readOnly: type === 'detail' ? true : false,
+                          sx: {
+                            borderRadius: 2.5,
                           },
-                          fullWidth: true,
-                        },
-                      }}
-                      {...field}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-            </Grid>
-            {type !== 'detail' ? (
-              <>
+                        }}
+                        fullWidth
+                        {...field}
+                      />
+                    )}
+                  />
+                </Grid>
                 <Grid xs={12}>
-                  <Divider sx={{ bgcolor: '#E1E3D4' }} />
+                  <Typography>{Strings.label_col_id_number}</Typography>
                 </Grid>
-                <Grid
-                  xs={12}
-                  sx={{ display: 'flex', justifyContent: 'flex-end' }}
-                >
-                  <Button onClick={onHandleShowDialog}>
-                    {labelBtnSubmit[type]}
-                  </Button>
+                <Grid xs={12}>
+                  <Controller
+                    name="idCardNumber"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        id={Strings.value_col_id_number}
+                        placeholder={Strings.placeholder_id_number}
+                        error={errors?.idCardNumber ? true : false}
+                        helperText={errors.idCardNumber?.message}
+                        InputProps={{
+                          readOnly: type === 'detail' ? true : false,
+                          sx: {
+                            borderRadius: 2.5,
+                          },
+                        }}
+                        fullWidth
+                        {...field}
+                      />
+                    )}
+                  />
                 </Grid>
-              </>
-            ) : null}
-          </Grid>
-        </>
-      )}
+                <Grid xs={12}>
+                  <Typography>{Strings.label_col_birthdate}</Typography>
+                </Grid>
+                <Grid xs={12}>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <Controller
+                      name="birthDate"
+                      control={control}
+                      render={({ field }) => (
+                        <DatePicker
+                          format="DD MMMM YYYY"
+                          disableFuture={true}
+                          readOnly={type === 'detail' ? true : false}
+                          slotProps={{
+                            textField: {
+                              size: 'small',
+                              color: 'success',
+                              placeholder: Strings.placeholder_birthdate,
+                              error: errors?.birthDate ? true : false,
+                              helperText: errorMsgBirtDate,
+                              InputProps: {
+                                sx: {
+                                  borderRadius: 2.5,
+                                },
+                              },
+                              fullWidth: true,
+                            },
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                {type !== 'detail' && !isMobile ? (
+                  <>
+                    <Grid xs={12}>
+                      <Divider sx={{ bgcolor: '#E1E3D4' }} />
+                    </Grid>
+                    <Grid xs={12} display="flex" justifyContent="flex-end">
+                      <Button onClick={onHandleShowDialog}>
+                        {labelBtnSubmit[type]}
+                      </Button>
+                    </Grid>
+                  </>
+                ) : null}
+              </Grid>
+            </>
+          )}
+        </Box>
+      </Grid>
+      {type !== 'detail' && isMobile ? (
+        <Grid
+          xs={12}
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-end"
+          sx={{ marginTop: 5, padding: 2, borderTop: '1px solid #D3D6C4' }}
+        >
+          {loading ? (
+            <Skeleton height={60} width="100%" />
+          ) : (
+            <Button onClick={onHandleShowDialog} fullWidth>
+              {labelBtnSubmit[type]}
+            </Button>
+          )}
+        </Grid>
+      ) : null}
       <Dialog
         open={isDialog}
         type={type}
@@ -207,7 +223,7 @@ const FormFarmer = ({
         handleOnCancel={onHandleCloseDialog}
         handleOnSubmit={handleSubmit(onSubmit)}
       />
-    </Box>
+    </Grid>
   );
 };
 

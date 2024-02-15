@@ -14,3 +14,16 @@ export interface Menu {
    */
   pathname: string;
 }
+
+export interface SidebarProps {
+  /**
+   *
+   * isMobile (true/false) of form
+   */
+  isMobile?: boolean;
+  /**
+   *
+   * The action on handle close on menu
+   */
+  handleClose?: () => void;
+}
