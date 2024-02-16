@@ -8,7 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - Farmer edit page (done)
 - Farmer view page (done)
 - Responsive UI support desktop, tab & mobile (done)
-- Unit testing (setup done & already coverage < 14%)
+- Unit testing (setup done & already coverage < 31%)
 
 ## Tech Stack
 

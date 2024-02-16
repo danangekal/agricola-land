@@ -72,7 +72,7 @@ describe('Home Page Test', () => {
     await waitFor(() => expect(inputPassword).toHaveDisplayValue(mockPassword));
   });
 
-  it('Simulate sign in proses check', async () => {
+  it('Simulate sign in proscess check', async () => {
     render(Component, { wrapper: ThemeWrapper });
 
     const inputUsername = screen.getByPlaceholderText(
